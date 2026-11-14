@@ -1,0 +1,2900 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIFSTORE — Pelayanan terpercaya dan cepat 100%</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --primary: #5ec5f7; --bg: #e3f4fd; }
+    body { background-color: var(--bg); font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .header-sky { background-color: var(--primary); }
+    .tab-active { border-bottom: 3px solid #0f172a; color: #0f172a; font-weight: 800; }
+    .poster-card { aspect-ratio: 3 / 4.2; }
+    .rif-title {
+      font-family: 'Arial Black', 'Fredoka One', Impact, sans-serif;
+      color: #38bdf8;
+      text-shadow: 0 2px 0 #0c4a6e;
+      letter-spacing: 0.03em;
+    }
+    @keyframes bounceSoft { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+    .animate-bounce-soft { animation: bounceSoft 2s infinite; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    .animate-fade-in { animation: fadeIn 0.28s ease-out; }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 select-none sm:select-auto">
+
+  <!-- HALAMAN LOGIN WAJIB DI AWAL (SEDERHANA & MODERN) -->
+  <section id="loginGate" class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-sky-100 via-white to-sky-200">
+    <div class="w-full max-w-md bg-white/95 backdrop-blur-md rounded-3xl shadow-xl border border-sky-100 p-6 sm:p-8 animate-fade-in">
+      <!-- Brand Header -->
+      <div class="flex flex-col items-center text-center mb-6">
+        <div id="gateBrandLogo" class="mb-2"></div>
+        <p class="text-xs text-slate-500 mt-1">Silakan masuk ke akun Anda untuk mengakses katalog Top Up, Akun Game & Spin Wheel.</p>
+      </div>
+
+      <!-- Segmented Switch Login / Register -->
+      <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-2xl mb-5 text-xs font-extrabold">
+        <button id="gateTabLogin" data-action="gate-tab" data-val="login" class="py-2.5 rounded-xl bg-white text-slate-900 shadow-sm transition">Masuk</button>
+        <button id="gateTabReg" data-action="gate-tab" data-val="register" class="py-2.5 rounded-xl text-slate-500 hover:text-slate-800 transition">Daftar Baru</button>
+      </div>
+
+      <!-- Form Masuk -->
+      <div id="gateFormLogin" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Username atau Email</label>
+          <input id="gateUser" type="text" placeholder="Masukkan username atau email" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 focus:ring-2 focus:ring-sky-200 rounded-xl px-3.5 py-3 text-sm outline-none transition" />
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Password</label>
+          <div class="relative">
+            <input id="gatePass" type="password" placeholder="Masukkan password" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 focus:ring-2 focus:ring-sky-200 rounded-xl px-3.5 py-3 pr-11 text-sm outline-none transition" />
+            <button type="button" data-action="toggle-gate-pass" class="absolute right-3 top-3 text-slate-400 hover:text-slate-700 text-sm">👁️</button>
+          </div>
+        </div>
+        <button data-action="gate-do-login" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-black py-3.5 rounded-xl text-sm shadow-md transition">
+          Masuk Sekarang
+        </button>
+      </div>
+
+      <!-- Form Daftar -->
+      <div id="gateFormReg" class="hidden space-y-2.5 text-xs">
+        <div class="bg-amber-50 border border-amber-200 text-amber-900 px-3 py-2 rounded-xl font-bold text-[11px] text-center">
+          🎁 Member baru otomatis mendapatkan bonus <b>+100 Coin</b>!
+        </div>
+        <input id="gateRegName" type="text" placeholder="Nama Lengkap" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+        <div class="grid grid-cols-2 gap-2">
+          <input id="gateRegUser" type="text" placeholder="Username" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          <input id="gateRegWa" type="text" placeholder="No. WhatsApp" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+        </div>
+        <input id="gateRegEmail" type="email" placeholder="Alamat Email" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+        <div class="grid grid-cols-2 gap-2">
+          <input id="gateRegPass" type="password" placeholder="Buat Password" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+          <input id="gateRegPass2" type="password" placeholder="Ulangi Password" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-sm outline-none" />
+        </div>
+        <button data-action="gate-do-register" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3 rounded-xl text-sm shadow-md transition">
+          Daftar & Masuk (+100 Coin)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- APLIKASI UTAMA (TERBUKA SETELAH LOGIN) -->
+  <div id="appShell" class="hidden pb-28">
+    <!-- SIDEBAR DRAWER -->
+    <div id="sidebarOverlay" class="fixed inset-0 z-50 bg-slate-950/50 hidden" data-action="close-sidebar"></div>
+    <aside id="sidebarDrawer" class="fixed top-0 left-0 bottom-0 z-50 w-72 bg-white shadow-2xl transform -translate-x-full transition-transform duration-300 flex flex-col">
+      <div class="header-sky p-4 flex items-center justify-between">
+        <div id="sidebarBrand"></div>
+        <button data-action="close-sidebar" class="w-8 h-8 rounded-lg bg-white/90 text-slate-900 font-black">✕</button>
+      </div>
+      <div class="p-4 flex-1 overflow-y-auto space-y-4 text-xs">
+        <div id="sidebarUserCard" class="bg-sky-50 border border-sky-200 rounded-2xl p-3"></div>
+        <div class="space-y-1 font-bold">
+          <button data-action="nav-cat" data-val="all" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center gap-2">🏠 Semua Katalog</button>
+          <button data-action="nav-cat" data-val="topup" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center gap-2">💎 Top Up Games Murah</button>
+          <button data-action="nav-cat" data-val="akun" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center gap-2">🎮 Jual Beli Akun Game</button>
+          <button data-action="nav-cat" data-val="pulsa" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center gap-2">📱 Voucher & Isi Pulsa</button>
+          <button data-action="open-gacha" class="w-full text-left px-3 py-2.5 rounded-xl bg-amber-50 text-amber-900 hover:bg-amber-100 flex items-center gap-2">🎡 Spin Wheel & Absen 7 Hari</button>
+          <button data-action="open-global-chat" class="w-full text-left px-3 py-2.5 rounded-xl bg-indigo-50 text-indigo-900 hover:bg-indigo-100 flex items-center gap-2">🌍 Ruang Obrolan General</button>
+          <button data-action="open-inbox" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center justify-between">
+            <span>✉️ Inbox Pesan Akun</span>
+            <span id="sideInboxBadge" class="bg-rose-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full hidden">0</span>
+          </button>
+          <button data-action="open-profile" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center gap-2">👤 Ubah Profil & Foto</button>
+          <button data-action="open-orders" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center gap-2">📦 Pesanan & Bukti Transaksi</button>
+          <button data-action="open-track-order" class="w-full text-left px-3 py-2.5 rounded-xl hover:bg-sky-50 flex items-center gap-2">🔎 Cek Status Pesanan</button>
+        </div>
+        <div class="border-t pt-3">
+          <div class="font-black text-slate-400 uppercase mb-2">Tautan Pembayaran Cepat</div>
+          <a id="sideAllPay" href="#" target="_blank" rel="noopener" class="block w-full text-center bg-emerald-500 text-slate-950 font-black py-2.5 rounded-xl mb-2">💳 All Payment Gateway</a>
+          <a id="sideQrisLink" href="#" target="_blank" rel="noopener" class="block w-full text-center bg-slate-900 text-white font-black py-2.5 rounded-xl">📱 QRIS Instan Merchant</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- NAVBAR BIRU LANGIT -->
+    <header class="header-sky sticky top-0 z-40 shadow-sm">
+      <div class="max-w-5xl mx-auto px-3 sm:px-4 h-16 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <button data-action="open-sidebar" class="w-10 h-10 shrink-0 rounded-xl bg-white/95 hover:bg-white flex items-center justify-center shadow-sm text-slate-900 font-black text-base">☰</button>
+          <div id="navbarBrand" data-action="reset-home" class="cursor-pointer min-w-0"></div>
+        </div>
+
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          <button data-action="open-gacha" class="flex items-center gap-1 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs px-2.5 sm:px-3 py-2 rounded-full shadow-sm">
+            <span>🪙</span><span id="navCoinBadge">0</span><span class="hidden sm:inline">Coin</span>
+          </button>
+          <button data-action="open-inbox" class="relative bg-white hover:bg-slate-50 text-slate-900 font-black text-xs px-2.5 sm:px-3 py-2 rounded-xl shadow-sm flex items-center gap-1" title="Inbox & Live Chat">
+            <span>✉️</span><span class="hidden md:inline">Inbox & Chat</span>
+            <span id="navInboxUnread" class="hidden -top-1.5 -right-1.5 absolute bg-rose-600 text-white text-[9px] font-black w-4 h-4 rounded-full items-center justify-center shadow">0</span>
+          </button>
+          <div id="navAuthArea"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main class="max-w-5xl mx-auto px-3 sm:px-4 pt-4 space-y-4">
+      <!-- HERO BANNER -->
+      <section id="heroSection" class="rounded-2xl overflow-hidden shadow-md bg-slate-950 text-white p-4 sm:p-6 relative">
+        <img id="heroBgImg" src="" alt="" class="hidden absolute inset-0 w-full h-full object-cover opacity-35" />
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div class="space-y-1.5">
+            <span class="inline-block bg-amber-400 text-slate-950 text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase">OTOMATIS 24 JAM • GARANSI 100%</span>
+            <div id="heroBrand"></div>
+            <p id="heroSubtext" class="text-xs sm:text-sm text-sky-200">Top Up Games Murah, Akun Game Sultan & Isi Pulsa Instan</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <a id="heroAllPayBtn" href="#" target="_blank" rel="noopener" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs px-3.5 py-2.5 rounded-xl shadow flex items-center gap-1.5">
+              <span>💳</span><span>Tautan All Payment</span>
+            </a>
+            <a id="heroQrisBtn" href="#" target="_blank" rel="noopener" class="bg-white hover:bg-sky-50 text-slate-900 font-black text-xs px-3.5 py-2.5 rounded-xl shadow flex items-center gap-1.5">
+              <span>📱</span><span>Tautan QRIS</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- STRIP BANNER GACHA & ABSEN 7 HARI -->
+      <section data-action="open-gacha" class="cursor-pointer rounded-2xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white p-3.5 flex items-center justify-between shadow border border-indigo-800/60 hover:brightness-110 transition">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-11 h-11 shrink-0 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-2xl shadow">🎡</div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="bg-amber-400 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full">ABSEN 7 HARI STREAK</span>
+              <span class="text-[11px] text-sky-300 font-bold">Bayar Item Pakai Coin!</span>
+            </div>
+            <div class="text-xs sm:text-sm font-extrabold truncate mt-0.5">Spin Wheel Gacha: Diskon, Top Up & Akun Sultan!</div>
+          </div>
+        </div>
+        <span class="shrink-0 bg-amber-400 text-slate-950 font-black text-xs px-3.5 py-2 rounded-full shadow">Spin ›</span>
+      </section>
+
+      <!-- STRIP BANNER RUANG OBROLAN GENERAL -->
+      <section data-action="open-global-chat" class="cursor-pointer rounded-2xl bg-gradient-to-r from-indigo-900 via-blue-950 to-indigo-900 text-white p-3.5 flex items-center justify-between shadow border border-sky-500/50 hover:brightness-110 transition">
+        <div class="flex items-center gap-3 min-w-0">
+          <div class="w-11 h-11 shrink-0 rounded-xl bg-sky-400 text-slate-950 flex items-center justify-center text-2xl shadow">🌍</div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="bg-sky-400 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full">KOMUNITAS PUBLIK</span>
+              <span class="text-[11px] text-indigo-200 font-bold">Interaksi Antar Konsumen & Admin</span>
+            </div>
+            <div class="text-xs sm:text-sm font-extrabold truncate mt-0.5">Ruang Obrolan General: Ngobrol, Tanya Stok & Pamer Gacha!</div>
+          </div>
+        </div>
+        <span class="shrink-0 bg-sky-400 text-slate-950 font-black text-xs px-3.5 py-2 rounded-full shadow">Buka ›</span>
+      </section>
+
+      <!-- SEARCH BAR KAPSUL -->
+      <div class="relative">
+        <input id="searchInput" type="text" placeholder="Mau topup games apa, cari akun, atau isi pulsa?" class="w-full bg-white rounded-full py-3.5 pl-5 pr-12 text-sm shadow-sm border border-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-400" />
+        <span class="absolute right-4 top-3.5 text-slate-400 text-base">🔍</span>
+      </div>
+
+      <!-- UNDERLINE CATEGORY TABS -->
+      <div id="categoryTabs" class="flex items-center gap-6 border-b border-sky-200 text-xs sm:text-sm font-bold text-slate-500 overflow-x-auto">
+        <button data-action="set-cat" data-val="all" class="pb-3 tab-active whitespace-nowrap">SEMUA</button>
+        <button data-action="set-cat" data-val="topup" class="pb-3 whitespace-nowrap">TOP UP GAMES</button>
+        <button data-action="set-cat" data-val="akun" class="pb-3 whitespace-nowrap">AKUN GAME</button>
+        <button data-action="set-cat" data-val="pulsa" class="pb-3 whitespace-nowrap">VOUCHER & PULSA</button>
+      </div>
+
+      <!-- KATALOG POSTER 3 KOLOM × 3 BARIS -->
+      <section id="catalogGrid" class="grid grid-cols-3 gap-2.5 sm:gap-4"></section>
+
+      <!-- PAGINATION -->
+      <div id="paginationBar" class="flex items-center justify-center gap-2 pt-1"></div>
+
+      <!-- KODE PROMO AKTIF -->
+      <section class="bg-white rounded-2xl p-4 shadow-sm border border-sky-100">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-black text-slate-700">🎟️ Kode Promo Diskon Aktif (Klik Salin)</span>
+          <span class="text-[11px] text-sky-600 font-bold">Pasang di Keranjang</span>
+        </div>
+        <div id="promoChips" class="flex flex-wrap gap-2"></div>
+      </section>
+    </main>
+
+    <!-- FOOTER BIRU LANGIT LENGKAP (PETA SITUS, ISI ULANG LAINNYA, MEDIA SOSIAL, S&K) -->
+    <footer class="header-sky text-white mt-10 pt-8 pb-24 border-t border-sky-300">
+      <div class="max-w-5xl mx-auto px-5 space-y-6">
+        <div class="space-y-3">
+          <div id="footerBrand"></div>
+          <p id="footerDescText" class="text-xs sm:text-sm text-white/95 leading-relaxed max-w-2xl">
+            Tempat top up game termurah, tercepat, dan terpercaya di Indonesia untuk semua pelanggan RIFSTORE. Proses Otomatis gak sampai 1 menit membuat Anda betah Top Up di sini. Tersedia berbagai macam pembayaran QRIS, Transfer Bank, E-Wallet (DANA, OVO, GoPay, ShopeePay), & All Payment yang pasti memudahkan Anda untuk bertransaksi.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs">
+          <!-- PETA SITUS -->
+          <div class="space-y-2.5">
+            <h4 class="font-black tracking-wider uppercase text-white text-xs">PETA SITUS</h4>
+            <ul class="space-y-2 font-semibold text-white/90">
+              <li><button data-action="reset-home" class="hover:underline">Beranda</button></li>
+              <li><button data-action="open-track-order" class="hover:underline">Cek Pesanan</button></li>
+              <li><button data-action="open-inbox" class="hover:underline">Inbox Pesan Akun</button></li>
+              <li><button data-action="open-gacha" class="hover:underline">Spin Wheel & Absen 7H</button></li>
+            </ul>
+          </div>
+
+          <!-- ISI ULANG LAINNYA -->
+          <div class="space-y-2.5">
+            <h4 class="font-black tracking-wider uppercase text-white text-xs">ISI ULANG LAINNYA</h4>
+            <ul class="space-y-2 font-semibold text-white/90">
+              <li><button data-action="quick-product" data-val="Mobile Legends" class="hover:underline">Mobile Legends</button></li>
+              <li><button data-action="quick-product" data-val="Free Fire" class="hover:underline">Free Fire</button></li>
+              <li><button data-action="quick-product" data-val="Valorant" class="hover:underline">Valorant Points</button></li>
+              <li><button data-action="quick-product" data-val="Pulsa" class="hover:underline">Pulsa & Kuota Data</button></li>
+            </ul>
+          </div>
+
+          <!-- MEDIA SOSIAL -->
+          <div class="col-span-2 sm:col-span-1 space-y-2.5">
+            <h4 class="font-black tracking-wider uppercase text-white text-xs">MEDIA SOSIAL</h4>
+            <div class="flex items-center gap-3 pt-1">
+              <!-- TikTok -->
+              <a id="socTiktok" href="#" target="_blank" rel="noopener" aria-label="TikTok" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
+                <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+              </a>
+              <!-- Instagram -->
+              <a id="socInsta" href="#" target="_blank" rel="noopener" aria-label="Instagram" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
+                <svg class="w-5 h-5 stroke-white fill-none" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+              </a>
+              <!-- WhatsApp -->
+              <a id="socWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
+                <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.82 14.01c-.24.68-1.41 1.3-1.95 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.18-4.94-4.37-.14-.19-1.18-1.57-1.18-3 0-1.43.75-2.13 1.01-2.42.27-.29.58-.36.77-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.58.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.39-.24.65-.14.27.1 1.69.8 1.98.94.29.14.48.22.55.34.07.12.07.69-.17 1.37z"/></svg>
+              </a>
+              <!-- YouTube -->
+              <a id="socYt" href="#" target="_blank" rel="noopener" aria-label="YouTube" class="w-9 h-9 rounded-xl bg-white/15 hover:bg-white/30 flex items-center justify-center transition">
+                <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.56A3.02 3.02 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.56 9.38.56 9.38.56s7.5 0 9.38-.56a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.6V8.4l6.27 3.6-6.27 3.6z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-white/25 pt-4 text-[11px] text-white/95 flex flex-wrap items-center justify-between gap-2">
+          <div>Hak Cipta © 2026 <span id="footerCopyName">RIFSTORE</span>. Semua Hak Dilindungi.</div>
+          <button data-action="open-terms" class="underline font-bold hover:text-slate-900">Syarat & Ketentuan Pengguna</button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- TOMBOL MELAYANG CS BANTUAN & SCROLL TO TOP -->
+    <div class="fixed bottom-20 right-5 z-40 flex flex-col items-end gap-2">
+      <button data-action="open-cs" aria-label="Live Chat Customer Service" class="relative w-12 h-12 rounded-2xl bg-white hover:bg-sky-50 text-slate-900 shadow-xl border-2 border-sky-400 flex items-center justify-center transition hover:scale-105" title="Obrolan Chat Admin & CS">
+        <span id="csChatBadge" class="hidden -top-1.5 -left-1.5 absolute bg-rose-600 text-white text-[10px] font-black w-5 h-5 rounded-full items-center justify-center shadow">0</span>
+        <svg class="w-7 h-7 text-slate-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 13v-1a8 8 0 0 1 16 0v1"/>
+          <rect x="2" y="13" width="4" height="6" rx="2"/>
+          <rect x="18" y="13" width="4" height="6" rx="2"/>
+          <path d="M20 19v1a2 2 0 0 1-2 2h-5"/>
+          <circle cx="9.5" cy="12" r="1" fill="currentColor"/>
+          <circle cx="14.5" cy="12" r="1" fill="currentColor"/>
+          <path d="M9.5 15.5c1.5 1 3.5 1 5 0"/>
+        </svg>
+      </button>
+      <button data-action="scroll-top" aria-label="Kembali ke Atas" class="w-9 h-9 rounded-lg bg-slate-900/90 hover:bg-slate-900 text-white shadow-lg flex items-center justify-center text-xs font-black" title="Ke Atas">
+        ︽
+      </button>
+    </div>
+
+    <!-- KERANJANG MELAYANG POJOK KANAN BAWAH -->
+    <button data-action="open-cart" class="fixed bottom-4 right-5 z-40 bg-slate-900 hover:bg-slate-800 text-white rounded-full pl-3 pr-5 py-2.5 shadow-2xl flex items-center gap-3 border-2 border-sky-400 animate-bounce-soft">
+      <div class="relative w-9 h-9 rounded-full bg-sky-400 text-slate-950 flex items-center justify-center text-base font-black">
+        🛒
+        <span id="cartBadgeCount" class="absolute -top-1.5 -right-1.5 bg-amber-400 text-slate-950 text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+      </div>
+      <div class="text-left">
+        <div class="text-[10px] text-sky-300 font-extrabold leading-none">KERANJANG</div>
+        <div id="cartBadgeTotal" class="text-xs font-black mt-0.5">Rp 0</div>
+      </div>
+    </button>
+  </div>
+
+  <!-- MODAL UTAMA -->
+  <div id="mainModal" class="fixed inset-0 z-50 bg-slate-950/65 hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div id="mainModalBox" class="bg-white rounded-2xl max-w-xl w-full p-4 sm:p-5 shadow-2xl relative max-h-[92vh] overflow-y-auto"></div>
+  </div>
+
+  <!-- LIGHTBOX ZOOM GAMBAR -->
+  <div id="lightboxModal" class="fixed inset-0 z-[60] bg-black/90 hidden items-center justify-center p-4" data-action="close-lightbox">
+    <img id="lightboxImg" src="" alt="Zoom" class="max-w-full max-h-[88vh] rounded-xl shadow-2xl" />
+  </div>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'RIFSTORE_HTML_PRO_V3';
+  const memFallback = {};
+  const SafeStore = {
+    get(k) {
+      try { return localStorage.getItem(k); } catch (e) { return memFallback[k] || null; }
+    },
+    set(k, v) {
+      try { localStorage.setItem(k, v); } catch (e) { memFallback[k] = v; }
+    }
+  };
+
+  function makePosterSVG(title, badge, c1, c2) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/></linearGradient></defs>
+      <rect width="400" height="560" fill="url(#g)"/>
+      <circle cx="320" cy="90" r="110" fill="#ffffff" fill-opacity="0.08"/>
+      <circle cx="70" cy="430" r="130" fill="#38bdf8" fill-opacity="0.12"/>
+      <rect x="30" y="34" width="140" height="32" rx="16" fill="#0f172a" fill-opacity="0.75"/>
+      <text x="100" y="55" font-family="Arial,sans-serif" font-size="13" font-weight="bold" fill="#38bdf8" text-anchor="middle">RIFSTORE</text>
+      <text x="200" y="255" font-family="Arial Black,sans-serif" font-size="30" font-weight="900" fill="#ffffff" text-anchor="middle">${title}</text>
+      <rect x="75" y="280" width="250" height="34" rx="8" fill="#fbbf24"/>
+      <text x="200" y="302" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#0f172a" text-anchor="middle">${badge}</text>
+    </svg>`;
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+  }
+
+  function pixelGamepadSVG(size = 38) {
+    return `<svg width="${size}" height="${Math.round(size*0.72)}" viewBox="0 0 22 16" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+      <rect x="4" y="1" width="5" height="1" fill="#1e1b4b"/><rect x="13" y="1" width="5" height="1" fill="#1e1b4b"/>
+      <rect x="3" y="2" width="16" height="1" fill="#4338ca"/>
+      <rect x="2" y="3" width="18" height="2" fill="#4f46e5"/>
+      <rect x="1" y="5" width="20" height="5" fill="#3730a3"/>
+      <rect x="1" y="10" width="6" height="3" fill="#312e81"/><rect x="15" y="10" width="6" height="3" fill="#312e81"/>
+      <rect x="2" y="13" width="4" height="2" fill="#1e1b4b"/><rect x="16" y="13" width="4" height="2" fill="#1e1b4b"/>
+      <rect x="5" y="5" width="2" height="5" fill="#94a3b8"/><rect x="3" y="7" width="6" height="2" fill="#94a3b8"/>
+      <rect x="10" y="7" width="2" height="1" fill="#1e1b4b"/>
+      <rect x="16" y="5" width="2" height="1" fill="#f59e0b"/>
+      <rect x="18" y="7" width="2" height="1" fill="#ef4444"/>
+      <rect x="16" y="9" width="2" height="1" fill="#22c55e"/>
+      <rect x="14" y="7" width="2" height="1" fill="#38bdf8"/>
+    </svg>`;
+  }
+
+  const DEFAULT_STATE = {
+    settings: {
+      storeName: 'RIFSTORE',
+      tagline: 'Pelayanan terpercaya dan cepat 100%',
+      customLogo: '',
+      heroBannerImg: '',
+      themePrimary: '#5ec5f7',
+      themeBg: '#e3f4fd',
+      coinRate: 100,
+      gachaCostRegular: 50,
+      gachaCostSultan: 150,
+      streakRewards: [20, 30, 40, 50, 75, 100, 200],
+      footerDesc: 'Tempat top up game termurah, tercepat, dan terpercaya di Indonesia untuk semua pelanggan RIFSTORE. Proses Otomatis gak sampai 1 menit membuat Anda betah Top Up di sini. Tersedia berbagai macam pembayaran QRIS, Transfer Bank, E-Wallet (DANA, OVO, GoPay, ShopeePay), & All Payment yang pasti memudahkan Anda untuk bertransaksi.',
+      csWhatsapp: '6281234567890',
+      socialTiktok: 'https://tiktok.com/@rifstore.id',
+      socialInstagram: 'https://instagram.com/rifstore.id',
+      socialYoutube: 'https://youtube.com/@rifstore',
+      allPaymentLink: 'https://app.sandbox.midtrans.com/snap/v2/vtweb/rifstore-allpay',
+      qrisPaymentLink: 'https://link.dana.id/qr/rifstore-official',
+      qrisPayload: '00020101021126570011ID.DANA.WWW011893600915000000000102090000000010303UME51440014ID.CO.QRIS.WWW0215ID10200000000010303UME5204581253033605802ID5908RIFSTORE6007CIREBON6105451516304A1B2'
+    },
+    users: [
+      { id: 'u-owner', name: 'Owner Rifstore', username: 'Owner', email: 'owner@rifstore.id', whatsapp: '081200000000', password: 'Owner123', role: 'owner', coins: 99999, streakDay: 0, lastCheckinDate: '', cart: [], prizes: [], inbox: [], coinLogs: [] },
+      { id: 'u-admin', name: 'Admin Rifstore', username: 'Admin', email: 'admin@rifstore.id', whatsapp: '081200000001', password: 'Admin123', role: 'admin', coins: 9999, streakDay: 0, lastCheckinDate: '', cart: [], prizes: [], inbox: [], coinLogs: [] },
+      {
+        id: 'u-budi', name: 'Budi Santoso', username: 'budi', email: 'budi@gmail.com', whatsapp: '081234567890', password: '123', role: 'customer', coins: 250, streakDay: 2, lastCheckinDate: '', cart: [], prizes: [],
+        inbox: [
+          {
+            id: 'msg-welcome',
+            title: '🎉 Selamat Datang di RIFSTORE!',
+            body: 'Akun Anda aktif dengan bonus awal 250 Coin. Setiap pembelian item atau akun game yang selesai akan otomatis dikirimkan beserta data akun & bukti transaksi ke Inbox ini.',
+            credentials: '',
+            orderId: '',
+            date: '14 Nov 2026, 09:00',
+            read: false
+          }
+        ],
+        coinLogs: [{ text: 'Bonus Member Baru Rifstore', delta: 250, date: 'Hari ini' }]
+      }
+    ],
+    currentUserId: null,
+    products: [
+      { id: 'p1', title: 'Mobile Legends Bang Bang', category: 'topup', game: 'Mobile Legends', badge: 'SERVER INDONESIA', inputType: 'userid_zone', process: 'Otomatis 1-3 Detik', price: 19500, stock: 999, images: [makePosterSVG('MOBILE LEGENDS', 'SERVER INDONESIA', '#0f172a', '#0284c7')], variants: [{ name: '86 Diamonds', price: 19500 }, { name: '172 Diamonds', price: 38500 }, { name: '257 Diamonds', price: 57000 }, { name: 'Weekly Diamond Pass', price: 26500 }], desc: 'Top up Diamond MLBB Server Indonesia resmi 100% legal cukup masukkan User ID dan Zone ID.' },
+      { id: 'p2', title: 'Free Fire & Free Fire MAX', category: 'topup', game: 'Free Fire', badge: 'INDONESIA', inputType: 'userid_only', process: 'Otomatis 1-3 Detik', price: 18000, stock: 999, images: [makePosterSVG('FREE FIRE', 'INDONESIA 24 JAM', '#1e1b4b', '#ea580c')], variants: [{ name: '140 Diamonds', price: 18000 }, { name: '355 Diamonds', price: 45000 }, { name: '720 Diamonds', price: 90000 }, { name: 'Membership Mingguan', price: 27000 }], desc: 'Top up Diamond Free Fire cepat dan murah cukup masukkan Player ID.' },
+      { id: 'p3', title: 'Server Global Mobile Legends', category: 'topup', game: 'Mobile Legends', badge: 'SERVER GLOBAL', inputType: 'userid_zone', process: 'Otomatis 1-5 Detik', price: 21000, stock: 999, images: [makePosterSVG('MLBB GLOBAL', 'NON-INDO REGION', '#1e293b', '#7c3aed')], variants: [{ name: '86 Diamonds Global', price: 21000 }, { name: '172 Diamonds Global', price: 41000 }], desc: 'Khusus akun Mobile Legends luar server Indonesia.' },
+      { id: 'p4', title: 'Valorant Points (Riot ID)', category: 'topup', game: 'Valorant', badge: 'SERVER ID / SEA', inputType: 'riot_id', process: 'Instan 1-5 Detik', price: 52000, stock: 999, images: [makePosterSVG('VALORANT', 'RIOT ID INSTAN', '#450a0a', '#e11d48')], variants: [{ name: '475 VP', price: 52000 }, { name: '1000 VP', price: 105000 }, { name: '2050 VP', price: 210000 }], desc: 'Top up Valorant Points resmi via Riot ID + Tagline.' },
+      { id: 'p5', title: 'Akun MLBB Mythic Glory 128 Skin', category: 'akun', game: 'Mobile Legends', badge: 'FULL COLLECTOR', inputType: 'email_wa', process: 'Serah Terima 5 Menit', rank: 'Mythic Glory ★75', skins: '128 Skin (3 Collector, 2 Legend, 8 Epic)', bind: 'Moonton Sepaket + Gmail', price: 450000, stock: 1, images: [makePosterSVG('AKUN ML GLORY', '128 SKIN SULTAN', '#0c4a6e', '#0369a1'), makePosterSVG('SKIN COLLECTOR', 'ANTI HACKBACK 100%', '#1e293b', '#0f172a')], variants: [], desc: 'Akun tangan pertama aman 100%, email Moonton sepaket diserahkan penuh.' },
+      { id: 'p6', title: 'Akun Valorant Ascendant + Kuronami', category: 'akun', game: 'Valorant', badge: 'FULL ACCESS', inputType: 'email_wa', process: 'Serah Terima 5 Menit', rank: 'Ascendant 2', skins: 'Kuronami Vandal, Reaver Karambit, Oni Phantom', bind: 'Email Verified + Changeable', price: 620000, stock: 1, images: [makePosterSVG('AKUN VALORANT', 'KURONAMI BUNDLE', '#881337', '#be123c')], variants: [], desc: 'Region Indonesia, email utama bisa langsung diganti ke email pembeli.' },
+      { id: 'p7', title: 'Pulsa All Operator 24 Jam', category: 'pulsa', game: 'Pulsa Reguler', badge: 'TAMBAH MASA AKTIF', inputType: 'phone_number', process: 'Otomatis 3 Detik', operator: 'Telkomsel, Indosat, XL, Axis, Tri, Smartfren', price: 11200, stock: 999, images: [makePosterSVG('ISI PULSA 24J', 'ALL OPERATOR', '#064e3b', '#059669')], variants: [{ name: 'Pulsa 10.000 (+15 Hari)', price: 11200 }, { name: 'Pulsa 25.000 (+30 Hari)', price: 25800 }, { name: 'Pulsa 50.000 (+45 Hari)', price: 50500 }], desc: 'Pulsa reguler resmi menambah masa aktif kartu untuk semua operator.' },
+      { id: 'p8', title: 'Paket Kuota Data & Voucher', category: 'pulsa', game: 'Kuota Internet', badge: 'KUOTA UTAMA 24J', inputType: 'phone_number', process: 'Otomatis 5 Detik', operator: 'Semua Nomor Prabayar Indonesia', price: 22000, stock: 999, images: [makePosterSVG('KUOTA DATA', 'FULL SPEED 24 JAM', '#1e3a8a', '#2563eb')], variants: [{ name: 'Kuota 10GB / 7 Hari', price: 22000 }, { name: 'Kuota 25GB / 30 Hari', price: 48000 }], desc: 'Paket data kuota utama tanpa pembagian jam.' },
+      { id: 'p9', title: 'Honor of Kings Tokens', category: 'topup', game: 'Honor of Kings', badge: 'GLOBAL / ID', inputType: 'userid_only', process: 'Instan 1-3 Detik', price: 16000, stock: 999, images: [makePosterSVG('HONOR OF KINGS', 'TOKENS MURAH', '#78350f', '#d97706')], variants: [{ name: '80 Tokens', price: 16000 }, { name: '240 Tokens', price: 46000 }], desc: 'Isi Tokens Honor of Kings cukup menggunakan Player ID.' }
+    ],
+    promos: [
+      { id: 'pr1', code: 'HEMAT10', type: 'percent', value: 10, minSpend: 10000, scope: 'all' },
+      { id: 'pr2', code: 'TOPUP5K', type: 'fixed', value: 5000, minSpend: 25000, scope: 'topup' },
+      { id: 'pr3', code: 'SULTAN20', type: 'percent', value: 20, minSpend: 100000, scope: 'akun' }
+    ],
+    gachaPrizes: [
+      { id: 'gp1', label: 'ZONK! Coba Lagi', type: 'zonk', value: 0, rarity: 'common', weight: 30, icon: '😅', color: '#94a3b8' },
+      { id: 'gp2', label: 'Diskon 10% All Item', type: 'voucher', value: 10, rarity: 'common', weight: 25, icon: '🎟️', color: '#38bdf8' },
+      { id: 'gp3', label: '+40 Bonus Coin', type: 'coin', value: 40, rarity: 'common', weight: 20, icon: '🪙', color: '#34d399' },
+      { id: 'gp4', label: 'Diskon 25% Top Up', type: 'voucher', value: 25, rarity: 'rare', weight: 15, icon: '💎', color: '#818cf8' },
+      { id: 'gp5', label: 'Gratis Weekly Pass', type: 'topup', value: 26500, rarity: 'epic', weight: 7, icon: '⚡', color: '#f472b6' },
+      { id: 'gp6', label: 'JACKPOT Akun MLBB', type: 'akun', value: 450000, rarity: 'jackpot', weight: 3, icon: '👑', color: '#fbbf24' }
+    ],
+    globalChat: [
+      {
+        id: 'gc-1',
+        userId: 'u-admin',
+        userName: 'Admin Rifstore',
+        username: 'Admin',
+        role: 'admin',
+        text: 'Halo semua Gengs! Selamat datang di Ruang Obrolan General RIFSTORE 🎉 Silakan saling berinteraksi, tanya stok, atau pamer hasil gacha di sini!',
+        time: '14 Nov 2026, 09:00'
+      },
+      {
+        id: 'gc-2',
+        userId: 'u-budi',
+        userName: 'Budi Santoso',
+        username: 'budi',
+        role: 'customer',
+        text: 'Mantap min! Kemarin abis spin wheel dapet diskon top up 🔥',
+        time: '14 Nov 2026, 09:10'
+      }
+    ],
+    chats: [
+      {
+        userId: 'u-budi',
+        userName: 'Budi Santoso',
+        username: 'budi',
+        messages: [
+          {
+            sender: 'admin',
+            text: 'Halo Budi! Selamat datang di Live Chat RIFSTORE 👋 Ada yang bisa Admin bantu terkait top up atau akun game?',
+            time: '14 Nov 2026, 09:05',
+            readByCustomer: false,
+            readByAdmin: true
+          }
+        ]
+      }
+    ],
+    orders: []
+  };
+
+  let state = loadState();
+  let ui = {
+    category: 'all',
+    page: 1,
+    perPage: 9,
+    appliedPromo: '',
+    useCoinCheckout: false,
+    wheelAngle: 0,
+    isSpinning: false,
+    wheelMode: 'regular',
+    gachaTab: 'wheel',
+    commTab: 'chat',
+    adminTab: 'products',
+    editProdId: null,
+    tempProdImages: [],
+    tempProdVariants: [],
+    editUserId: null,
+    userSearch: '',
+    showNewUserForm: false,
+    deliverOrderId: null,
+    activeChatUserId: null,
+    simDayOffset: 0
+  };
+
+  function loadState() {
+    try {
+      const raw = SafeStore.get(STORAGE_KEY) || SafeStore.get('RIFSTORE_HTML_PRO_V2');
+      if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+      const parsed = JSON.parse(raw);
+      if (!parsed || !Array.isArray(parsed.products) || !Array.isArray(parsed.users)) {
+        return JSON.parse(JSON.stringify(DEFAULT_STATE));
+      }
+      parsed.users.forEach(u => { if (!Array.isArray(u.inbox)) u.inbox = []; });
+      if (!Array.isArray(parsed.chats)) parsed.chats = [];
+      if (!Array.isArray(parsed.globalChat)) parsed.globalChat = DEFAULT_STATE.globalChat;
+      return parsed;
+    } catch (e) {
+      return JSON.parse(JSON.stringify(DEFAULT_STATE));
+    }
+  }
+
+  function saveState() {
+    SafeStore.set(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  const fmtRp = n => 'Rp ' + Number(n || 0).toLocaleString('id-ID');
+  const getUser = () => state.users.find(u => u.id === state.currentUserId) || null;
+  const getActiveCart = () => {
+    const u = getUser();
+    return u ? (u.cart || []) : [];
+  };
+  const setActiveCart = (arr) => {
+    const u = getUser();
+    if (u) { u.cart = arr; saveState(); }
+  };
+
+  function getTodayStr() {
+    const d = new Date(Date.now() + ui.simDayOffset * 86400000);
+    return d.toISOString().slice(0, 10);
+  }
+
+  function getNowFormatted() {
+    const d = new Date(Date.now() + ui.simDayOffset * 86400000);
+    return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) + ', ' +
+           d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function pushUserInbox(userId, title, body, credentials = '', orderId = '') {
+    const targetU = state.users.find(x => x.id === userId);
+    if (!targetU) return;
+    if (!Array.isArray(targetU.inbox)) targetU.inbox = [];
+    targetU.inbox.unshift({
+      id: 'msg-' + Date.now() + '-' + Math.floor(Math.random() * 999),
+      title,
+      body,
+      credentials,
+      orderId,
+      date: getNowFormatted(),
+      read: false
+    });
+  }
+
+  function brandHTML(compact = false, centered = false) {
+    const s = state.settings;
+    const icon = s.customLogo
+      ? `<img src="${s.customLogo}" alt="Logo" class="${compact ? 'w-9 h-9' : 'w-12 h-12'} rounded-xl object-cover shrink-0"/>`
+      : pixelGamepadSVG(compact ? 34 : 46);
+    return `<div class="flex items-center ${centered ? 'justify-center' : ''} gap-2.5 min-w-0">
+      ${icon}
+      <div class="min-w-0 leading-none ${centered ? 'text-left' : ''}">
+        <div class="rif-title ${compact ? 'text-lg sm:text-xl' : 'text-2xl sm:text-3xl'} font-black truncate">${s.storeName}</div>
+        <div class="text-[10px] sm:text-[11px] font-bold text-slate-700 truncate mt-0.5">${s.tagline}</div>
+      </div>
+    </div>`;
+  }
+
+  function renderAll() {
+    try {
+      const s = state.settings;
+      document.documentElement.style.setProperty('--primary', s.themePrimary || '#5ec5f7');
+      document.documentElement.style.setProperty('--bg', s.themeBg || '#e3f4fd');
+
+      const u = getUser();
+      const gateEl = document.getElementById('loginGate');
+      const appEl = document.getElementById('appShell');
+
+      if (!u) {
+        gateEl.classList.remove('hidden');
+        appEl.classList.add('hidden');
+        document.getElementById('gateBrandLogo').innerHTML = brandHTML(false, true);
+        return;
+      }
+
+      gateEl.classList.add('hidden');
+      appEl.classList.remove('hidden');
+
+      document.getElementById('navbarBrand').innerHTML = brandHTML(true);
+      document.getElementById('sidebarBrand').innerHTML = brandHTML(true);
+      document.getElementById('heroBrand').innerHTML = `<div class="flex items-center gap-2.5">${s.customLogo ? `<img src="${s.customLogo}" class="w-11 h-11 rounded-xl object-cover"/>` : pixelGamepadSVG(46)}<div><div class="rif-title text-2xl sm:text-3xl font-black">${s.storeName}</div><div class="text-xs text-sky-300 font-bold">${s.tagline}</div></div></div>`;
+      document.getElementById('footerBrand').innerHTML = brandHTML(true);
+      const fDesc = document.getElementById('footerDescText');
+      if (fDesc && s.footerDesc) fDesc.textContent = s.footerDesc;
+      const fCopy = document.getElementById('footerCopyName');
+      if (fCopy) fCopy.textContent = s.storeName || 'RIFSTORE';
+      const sTik = document.getElementById('socTiktok'); if (sTik) sTik.href = s.socialTiktok || '#';
+      const sIns = document.getElementById('socInsta'); if (sIns) sIns.href = s.socialInstagram || '#';
+      const sYt = document.getElementById('socYt'); if (sYt) sYt.href = s.socialYoutube || '#';
+      const sWa = document.getElementById('socWa'); if (sWa) sWa.href = 'https://wa.me/' + (s.csWhatsapp || '6281234567890');
+
+      const heroImg = document.getElementById('heroBgImg');
+      if (s.heroBannerImg) { heroImg.src = s.heroBannerImg; heroImg.classList.remove('hidden'); }
+      else { heroImg.classList.add('hidden'); }
+
+      ['heroAllPayBtn', 'sideAllPay'].forEach(id => { const el = document.getElementById(id); if (el) el.href = s.allPaymentLink || '#'; });
+      ['heroQrisBtn', 'sideQrisLink'].forEach(id => { const el = document.getElementById(id); if (el) el.href = s.qrisPaymentLink || '#'; });
+
+      document.getElementById('navCoinBadge').textContent = u.coins;
+
+      const adminUnreadChats = state.chats.reduce((sum, ch) => sum + (ch.messages || []).filter(m => m.sender === 'customer' && !m.readByAdmin).length, 0);
+      const custChat = state.chats.find(ch => ch.userId === u.id);
+      const custUnreadChats = custChat ? (custChat.messages || []).filter(m => m.sender === 'admin' && !m.readByCustomer).length : 0;
+
+      // Update Combined Inbox + Live Chat Unread Badge
+      const unreadInboxOnly = (u.inbox || []).filter(m => !m.read).length;
+      const totalCommUnread = unreadInboxOnly + (u.role === 'admin' ? adminUnreadChats : custUnreadChats);
+      const navInboxEl = document.getElementById('navInboxUnread');
+      const sideInboxEl = document.getElementById('sideInboxBadge');
+      if (totalCommUnread > 0) {
+        navInboxEl.textContent = totalCommUnread;
+        navInboxEl.classList.remove('hidden');
+        navInboxEl.classList.add('flex');
+        sideInboxEl.textContent = totalCommUnread;
+        sideInboxEl.classList.remove('hidden');
+      } else {
+        navInboxEl.classList.add('hidden');
+        navInboxEl.classList.remove('flex');
+        sideInboxEl.classList.add('hidden');
+      }
+
+      const csBadgeEl = document.getElementById('csChatBadge');
+      if (csBadgeEl) {
+        const badgeNum = u.role === 'admin' ? adminUnreadChats : custUnreadChats;
+        if (badgeNum > 0) {
+          csBadgeEl.textContent = badgeNum;
+          csBadgeEl.classList.remove('hidden');
+          csBadgeEl.classList.add('flex');
+        } else {
+          csBadgeEl.classList.add('hidden');
+          csBadgeEl.classList.remove('flex');
+        }
+      }
+
+      const avatarHTML = u.avatar
+        ? `<img src="${u.avatar}" alt="Avatar" class="w-7 h-7 rounded-full object-cover border border-sky-400 shrink-0" />`
+        : `<span class="w-7 h-7 rounded-full bg-sky-500 text-white font-black text-xs flex items-center justify-center shrink-0">${(u.name || 'U').charAt(0).toUpperCase()}</span>`;
+
+      const authArea = document.getElementById('navAuthArea');
+      authArea.innerHTML = `<div class="flex items-center gap-1.5">
+        <button data-action="open-profile" class="bg-white hover:bg-sky-50 text-slate-900 font-black text-xs p-1 sm:pr-2.5 rounded-full shadow flex items-center gap-1.5" title="Ubah Profil & Foto">
+          ${avatarHTML}
+          <span class="hidden md:inline max-w-[72px] truncate">${u.username}</span>
+        </button>
+        ${u.role === 'admin' || u.role === 'owner'
+          ? `<button data-action="open-admin" class="relative bg-slate-900 text-amber-400 font-black text-xs px-3 py-2 rounded-xl shadow">👑 ${u.role === 'owner' ? 'Owner' : 'Admin'}${adminUnreadChats > 0 ? `<span class="ml-1 bg-rose-600 text-white text-[9px] px-1.5 py-0.5 rounded-full">${adminUnreadChats}</span>` : ''}</button>`
+          : `<button data-action="open-orders" class="bg-white text-slate-900 font-black text-xs px-3 py-2 rounded-xl shadow">📦 Order</button>`}
+        <button data-action="logout" class="bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs px-2.5 py-2 rounded-xl">Keluar</button>
+      </div>`;
+
+      const sideAvatar = u.avatar
+        ? `<img src="${u.avatar}" alt="Avatar" class="w-11 h-11 rounded-2xl object-cover border-2 border-sky-400 shrink-0" />`
+        : `<div class="w-11 h-11 rounded-2xl bg-sky-500 text-white font-black text-base flex items-center justify-center shrink-0">${(u.name || 'U').charAt(0).toUpperCase()}</div>`;
+
+      document.getElementById('sidebarUserCard').innerHTML = `
+        <div class="flex items-center gap-2.5">
+          ${sideAvatar}
+          <div class="min-w-0">
+            <div class="font-black text-slate-900 truncate">${u.name}</div>
+            <div class="text-[11px] text-slate-500 truncate">@${u.username}</div>
+          </div>
+        </div>
+        <div class="text-amber-600 font-extrabold mt-2">🪙 ${u.coins} Coin (= ${fmtRp(u.coins * s.coinRate)})</div>
+        <div class="flex items-center justify-between mt-1">
+          <span class="text-slate-500">Streak Absen: ${u.streakDay}/7</span>
+          <button data-action="open-profile" class="text-sky-700 font-black underline">Ubah Profil</button>
+        </div>`;
+
+      renderCatalog();
+      renderPromos();
+      updateCartBadge();
+    } catch (err) {
+      console.error('Render error:', err);
+    }
+  }
+
+  function renderCatalog() {
+    const q = (document.getElementById('searchInput').value || '').toLowerCase();
+    const filtered = state.products.filter(p => {
+      const mCat = ui.category === 'all' || p.category === ui.category;
+      const mQ = !q || p.title.toLowerCase().includes(q) || (p.game || '').toLowerCase().includes(q) || (p.badge || '').toLowerCase().includes(q);
+      return mCat && mQ;
+    });
+    const totalPages = Math.max(1, Math.ceil(filtered.length / ui.perPage));
+    if (ui.page > totalPages) ui.page = totalPages;
+    const slice = filtered.slice((ui.page - 1) * ui.perPage, ui.page * ui.perPage);
+
+    document.getElementById('catalogGrid').innerHTML = slice.map(p => {
+      const img = (p.images && p.images[0]) ? p.images[0] : makePosterSVG(p.title, p.badge || 'RIFSTORE', '#0f172a', '#0284c7');
+      return `<div data-action="open-product" data-id="${p.id}" class="poster-card relative rounded-2xl overflow-hidden bg-slate-900 shadow-md cursor-pointer group">
+        <img src="${img}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent"></div>
+        ${p.images && p.images.length > 1 ? `<span class="absolute top-2 right-2 bg-black/75 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">📷 ${p.images.length}</span>` : ''}
+        <div class="absolute bottom-0 inset-x-0 p-2 sm:p-2.5 text-center">
+          ${p.badge ? `<span class="inline-block bg-black/85 text-white text-[8px] sm:text-[9px] font-extrabold px-2 py-0.5 rounded mb-1">${p.badge}</span>` : ''}
+          <div class="text-white font-extrabold text-[11px] sm:text-xs leading-tight line-clamp-2">${p.title}</div>
+          <div class="text-sky-300 font-bold text-[10px] sm:text-[11px] mt-0.5">${fmtRp(p.price)}</div>
+        </div>
+      </div>`;
+    }).join('') || `<div class="col-span-3 text-center py-10 text-slate-500 text-xs">Produk tidak ditemukan.</div>`;
+
+    let pagHTML = '';
+    if (totalPages > 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        pagHTML += `<button data-action="set-page" data-val="${i}" class="w-8 h-8 rounded-xl text-xs font-black ${i === ui.page ? 'bg-slate-900 text-white' : 'bg-white text-slate-700 shadow-sm'}">${i}</button>`;
+      }
+    }
+    document.getElementById('paginationBar').innerHTML = pagHTML;
+  }
+
+  function renderPromos() {
+    document.getElementById('promoChips').innerHTML = state.promos.map(pr => `
+      <button data-action="copy-promo" data-val="${pr.code}" class="bg-sky-50 hover:bg-sky-100 border border-sky-200 px-3 py-1.5 rounded-xl text-xs font-extrabold text-sky-950">
+        ${pr.code} (${pr.type === 'percent' ? pr.value + '%' : fmtRp(pr.value)})
+      </button>
+    `).join('');
+  }
+
+  function updateCartBadge() {
+    const cart = getActiveCart();
+    const count = cart.reduce((s, i) => s + i.qty, 0);
+    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    document.getElementById('cartBadgeCount').textContent = count;
+    document.getElementById('cartBadgeTotal').textContent = fmtRp(total);
+  }
+
+  function openModal(html) {
+    document.getElementById('mainModalBox').innerHTML = html;
+    const m = document.getElementById('mainModal');
+    m.classList.remove('hidden');
+    m.classList.add('flex');
+  }
+  function closeModal() {
+    const m = document.getElementById('mainModal');
+    m.classList.add('hidden');
+    m.classList.remove('flex');
+  }
+
+  function openProductModal(id) {
+    const p = state.products.find(x => x.id === id);
+    if (!p) return;
+    const hasVar = p.variants && p.variants.length > 0;
+    const inputLabel = p.category === 'akun' ? 'Email & No. WhatsApp Penerima Akun'
+                     : p.category === 'pulsa' ? 'Nomor HP Tujuan (08xxxxxxxxxx)'
+                     : 'User ID & Zone/Server ID (atau Riot ID)';
+    openModal(`
+      <button data-action="close-modal" class="float-right text-slate-400 hover:text-slate-900 font-black text-lg">✕</button>
+      <div class="flex gap-2 overflow-x-auto pb-2 mb-3">
+        ${(p.images || []).map(src => `<img src="${src}" data-action="zoom-img" data-val="${src}" class="h-36 rounded-xl object-cover border cursor-zoom-in shrink-0" />`).join('')}
+      </div>
+      <span class="bg-sky-100 text-sky-900 text-[10px] font-black px-2 py-0.5 rounded uppercase">${p.category}</span>
+      <h3 class="text-lg font-black mt-1">${p.title}</h3>
+      <p class="text-xs text-slate-500 mt-1">${p.desc || ''}</p>
+      ${p.category === 'akun' ? `<div class="mt-2.5 bg-slate-50 border rounded-xl p-3 text-xs space-y-1">
+        <div><b>Rank/Tier:</b> ${p.rank || '-'}</div>
+        <div><b>Koleksi Skin:</b> ${p.skins || '-'}</div>
+        <div><b>Status Login/Bind:</b> ${p.bind || '-'}</div>
+      </div>` : ''}
+      ${p.category === 'pulsa' ? `<div class="mt-2.5 bg-emerald-50 border border-emerald-200 rounded-xl p-2.5 text-xs"><b>Operator:</b> ${p.operator || 'All Operator'} • <b>Proses:</b> ${p.process || 'Otomatis'}</div>` : ''}
+      <div class="mt-3">
+        <label class="block text-xs font-extrabold mb-1">${inputLabel}</label>
+        <input id="prodTargetField" type="text" placeholder="Isi tujuan pengiriman..." class="w-full border rounded-xl px-3 py-2.5 text-sm" />
+      </div>
+      ${hasVar ? `<div class="mt-3">
+        <label class="block text-xs font-extrabold mb-1.5">Pilih Nominal Paket</label>
+        <div class="grid grid-cols-2 gap-2">
+          ${p.variants.map((v, i) => `<label class="border rounded-xl p-2.5 text-xs cursor-pointer hover:border-sky-500 flex items-center gap-2">
+            <input type="radio" name="prodVarRadio" value="${i}" ${i === 0 ? 'checked' : ''} />
+            <div><div class="font-extrabold">${v.name}</div><div class="text-sky-600 font-bold">${fmtRp(v.price)}</div></div>
+          </label>`).join('')}
+        </div>
+      </div>` : `<div class="mt-3 text-lg font-black text-sky-600">${fmtRp(p.price)}</div>`}
+      <button data-action="add-to-cart" data-id="${p.id}" class="mt-4 w-full bg-slate-900 hover:bg-slate-800 text-white font-black py-3 rounded-xl text-sm">+ Masukkan Keranjang</button>
+    `);
+  }
+
+  function openCartModal() {
+    const cart = getActiveCart();
+    const u = getUser();
+    const s = state.settings;
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+    let promoDisc = 0;
+    if (ui.appliedPromo) {
+      const pr = state.promos.find(x => x.code === ui.appliedPromo.toUpperCase());
+      if (pr && subtotal >= pr.minSpend) {
+        promoDisc = pr.type === 'percent' ? Math.round(subtotal * pr.value / 100) : pr.value;
+      }
+    }
+    const afterPromo = Math.max(0, subtotal - promoDisc);
+    const maxCoinVal = u ? u.coins * s.coinRate : 0;
+    const coinDisc = (u && ui.useCoinCheckout) ? Math.min(afterPromo, maxCoinVal) : 0;
+    const coinUsedCount = coinDisc > 0 ? Math.ceil(coinDisc / s.coinRate) : 0;
+    const grandTotal = Math.max(0, afterPromo - coinDisc);
+
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <h3 class="text-lg font-black mb-3">🛒 Keranjang Belanja</h3>
+      ${cart.length === 0 ? '<p class="text-center text-slate-400 text-xs py-8">Keranjang Anda masih kosong.</p>' : `
+        <div class="space-y-2 max-h-44 overflow-y-auto mb-3">
+          ${cart.map((c, idx) => `<div class="flex justify-between items-center bg-slate-50 border rounded-xl p-2.5 text-xs">
+            <div>
+              <div class="font-extrabold">${c.title}</div>
+              <div class="text-slate-500">Tujuan: ${c.target}</div>
+              <div class="text-sky-600 font-bold">${fmtRp(c.price)} × ${c.qty}</div>
+            </div>
+            <button data-action="remove-cart" data-val="${idx}" class="text-rose-500 font-extrabold px-2">Hapus</button>
+          </div>`).join('')}
+        </div>
+
+        <div class="space-y-2.5 border-t pt-3 text-xs">
+          <div class="flex gap-2">
+            <input id="cartPromoCode" type="text" value="${ui.appliedPromo}" placeholder="Kode Promo (HEMAT10)" class="flex-1 border rounded-xl px-3 py-2 uppercase font-bold" />
+            <button data-action="apply-promo" class="bg-sky-500 text-slate-950 font-black px-3.5 rounded-xl">Pakai</button>
+          </div>
+
+          <label class="flex items-center justify-between bg-amber-50 border border-amber-300 rounded-xl p-2.5 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input id="chkUseCoin" type="checkbox" ${ui.useCoinCheckout ? 'checked' : ''} data-action="toggle-coin" />
+              <div>
+                <div class="font-black text-amber-950">🪙 Bayar Pakai Coin (${u.coins} Coin)</div>
+                <div class="text-[10px] text-amber-800">Kurs: 1 Coin = ${fmtRp(s.coinRate)} (Potongan hingga ${fmtRp(maxCoinVal)})</div>
+              </div>
+            </div>
+            <span class="font-black text-amber-900">-${fmtRp(coinDisc)}</span>
+          </label>
+
+          <div>
+            <label class="font-extrabold block mb-1">Metode Pembayaran (QRIS & All Payment)</label>
+            <select id="checkoutChannel" class="w-full border rounded-xl px-3 py-2.5 font-bold bg-sky-50">
+              <option value="QRIS">📱 QRIS Otomatis (DANA, OVO, GoPay, ShopeePay, M-Banking)</option>
+              <option value="ALL_PAYMENT">💳 Tautan All Payment Gateway (E-Wallet & Virtual Account)</option>
+              <option value="QRIS_LINK">⚡ Tautan QRIS Instan Merchant</option>
+              <option value="DANA">🔵 DANA E-Wallet</option>
+              <option value="OVO">🟣 OVO</option>
+              <option value="BCA_VA">🏦 BCA Virtual Account</option>
+            </select>
+          </div>
+
+          <div class="bg-slate-50 rounded-xl p-2.5 space-y-1">
+            <div class="flex justify-between"><span>Subtotal</span><span>${fmtRp(subtotal)}</span></div>
+            ${promoDisc > 0 ? `<div class="flex justify-between text-emerald-600 font-bold"><span>Diskon Promo</span><span>-${fmtRp(promoDisc)}</span></div>` : ''}
+            ${coinDisc > 0 ? `<div class="flex justify-between text-amber-700 font-bold"><span>Bayar Coin (${coinUsedCount} Coin)</span><span>-${fmtRp(coinDisc)}</span></div>` : ''}
+            <div class="flex justify-between font-black text-sm border-t pt-1"><span>Total Bayar</span><span class="text-sky-600">${grandTotal === 0 ? 'LUNAS DENGAN COIN (Rp 0)' : fmtRp(grandTotal)}</span></div>
+          </div>
+
+          <button data-action="process-checkout" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3 rounded-xl text-sm shadow">
+            ${grandTotal === 0 ? '🪙 Bayar Lunas Menggunakan Coin' : '💳 Lanjut Pembayaran QRIS / All Payment'}
+          </button>
+        </div>
+      `}
+    `);
+  }
+
+  function drawQRCanvas(canvas, text) {
+    const ctx = canvas.getContext('2d');
+    const size = 180;
+    canvas.width = size; canvas.height = size;
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, size, size);
+    const cells = 25, cell = Math.floor((size - 20) / cells);
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) hash = ((hash << 5) - hash) + text.charCodeAt(i);
+    ctx.fillStyle = '#0f172a';
+    for (let r = 0; r < cells; r++) {
+      for (let c = 0; c < cells; c++) {
+        const isFinder = (r < 7 && c < 7) || (r < 7 && c >= cells - 7) || (r >= cells - 7 && c < 7);
+        if (isFinder) {
+          const border = r === 0 || r === 6 || r === cells - 7 || r === cells - 1 || c === 0 || c === 6 || c === cells - 7 || c === cells - 1;
+          const inner = (r >= 2 && r <= 4 && c >= 2 && c <= 4) || (r >= 2 && r <= 4 && c >= cells - 5 && c <= cells - 3) || (r >= cells - 5 && r <= cells - 3 && c >= 2 && c <= 4);
+          if (border || inner) ctx.fillRect(10 + c * cell, 10 + r * cell, cell, cell);
+        } else {
+          const v = Math.abs(Math.sin(hash + r * 31 + c * 17));
+          if (v > 0.48) ctx.fillRect(10 + c * cell, 10 + r * cell, cell, cell);
+        }
+      }
+    }
+  }
+
+  function openPaymentScreen(order) {
+    const s = state.settings;
+    const payUrl = order.channel === 'ALL_PAYMENT' ? s.allPaymentLink : s.qrisPaymentLink;
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <div class="text-center space-y-3">
+        <span class="bg-sky-100 text-sky-900 text-xs font-black px-3 py-1 rounded-full">INVOICE #${order.code}</span>
+        <h3 class="text-lg font-black">Selesaikan Pembayaran</h3>
+        <div class="text-2xl font-black text-sky-600">${fmtRp(order.total)}</div>
+        <div class="p-3 bg-white border-2 border-slate-900 rounded-2xl w-fit mx-auto">
+          <canvas id="qrisCanvas"></canvas>
+        </div>
+        <div class="flex gap-2 justify-center">
+          <button data-action="download-qris" class="bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-xs px-3 py-2 rounded-xl">⬇️ Simpan QRIS PNG</button>
+          <a href="${payUrl}" target="_blank" rel="noopener" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-xs px-3 py-2 rounded-xl">🔗 Buka Tautan Pembayaran</a>
+        </div>
+        <button data-action="confirm-order-paid" data-id="${order.id}" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3 rounded-xl text-xs shadow">✅ Konfirmasi Sudah Bayar (+5% Cashback Coin)</button>
+      </div>
+    `);
+    const cv = document.getElementById('qrisCanvas');
+    if (cv) drawQRCanvas(cv, `${s.qrisPayload}|${order.code}|${order.total}`);
+  }
+
+  // CEK PESANAN BERDASARKAN NOMOR INVOICE
+  function openTrackOrderModal(prefill = '') {
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <h3 class="text-lg font-black mb-1">🔎 Cek Status Pesanan</h3>
+      <p class="text-xs text-slate-500 mb-3">Masukkan nomor invoice pesanan Anda (Contoh: <b>RIF-123456</b>) untuk melacak status & bukti transaksi.</p>
+      <div class="flex gap-2 mb-3">
+        <input id="trackInvoiceInput" type="text" value="${prefill}" placeholder="Ketik Nomor Invoice (RIF-XXXXXX)..." class="flex-1 border rounded-xl px-3 py-2.5 text-xs uppercase font-bold" />
+        <button data-action="do-track-order" class="bg-slate-900 text-amber-400 font-black px-4 rounded-xl text-xs">Cari</button>
+      </div>
+      <div id="trackOrderResult" class="text-xs"></div>
+    `);
+  }
+
+  // OBROLAN LIVE CHAT KONSUMEN <-> ADMIN
+  function getOrCreateChatThread(userObj) {
+    let thread = state.chats.find(c => c.userId === userObj.id);
+    if (!thread) {
+      thread = {
+        userId: userObj.id,
+        userName: userObj.name,
+        username: userObj.username,
+        messages: [
+          {
+            sender: 'admin',
+            text: `Halo ${userObj.name}! Selamat datang di Live Chat ${state.settings.storeName} 👋 Silakan tulis pertanyaan Anda di bawah ini.`,
+            time: getNowFormatted(),
+            readByCustomer: true,
+            readByAdmin: true
+          }
+        ]
+      };
+      state.chats.unshift(thread);
+    }
+    return thread;
+  }
+
+  // RUANG OBROLAN GENERAL (SEMUA KONSUMEN & ADMIN BERINTERAKSI)
+  function openGlobalChatModal() {
+    const u = getUser();
+    if (!u) return;
+    if (!Array.isArray(state.globalChat)) state.globalChat = [];
+
+    openModal(`
+      <div class="flex items-center justify-between border-b pb-3 mb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-indigo-500 text-white flex items-center justify-center text-xl shadow-sm">🌍</div>
+          <div>
+            <h3 class="text-sm sm:text-base font-black leading-tight">Ruang Obrolan General RIFSTORE</h3>
+            <div class="text-[11px] text-indigo-600 font-bold">● Diskusi Publik • Semua Pelanggan & Admin</div>
+          </div>
+        </div>
+        <button data-action="close-modal" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 font-black text-slate-700">✕</button>
+      </div>
+
+      <!-- Area Pesan General -->
+      <div id="globalChatListBox" class="h-80 overflow-y-auto bg-slate-50 border border-slate-200 rounded-2xl p-3 space-y-3 text-xs">
+        ${state.globalChat.length === 0 ? '<p class="text-center text-slate-400 py-10">Belum ada obrolan di ruang general.</p>' : state.globalChat.map(m => {
+          const isMe = m.userId === u.id;
+          const isAdmin = m.role === 'admin';
+          return `<div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
+            <div class="text-[10px] font-bold text-slate-500 mb-0.5 px-1 flex items-center gap-1">
+              ${isAdmin ? '<span class="bg-amber-400 text-slate-950 px-1.5 py-0.2 rounded font-black text-[9px]">ADMIN</span>' : ''}
+              <span>${isMe ? 'Anda' : m.userName + ' (@' + m.username + ')'}</span>
+              <span class="text-slate-400">• ${m.time}</span>
+            </div>
+            <div class="max-w-[85%] px-3.5 py-2.5 rounded-2xl leading-relaxed whitespace-pre-line shadow-sm ${isMe
+              ? 'bg-slate-900 text-white rounded-br-sm'
+              : isAdmin
+                ? 'bg-amber-50 border border-amber-300 text-amber-950 font-medium rounded-bl-sm'
+                : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm'}">${m.text}</div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <!-- Input Kirim Obrolan General -->
+      <div class="flex gap-2 pt-3">
+        <input id="globalChatInput" type="text" placeholder="Tulis pesan ke semua konsumen & admin..." class="flex-1 bg-slate-50 border border-slate-300 focus:bg-white focus:border-indigo-400 rounded-xl px-3.5 py-2.5 text-xs outline-none" />
+        <button data-action="send-global-chat" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black px-4 py-2.5 rounded-xl text-xs shadow">Kirim 🚀</button>
+      </div>
+    `);
+
+    const box = document.getElementById('globalChatListBox');
+    if (box) box.scrollTop = box.scrollHeight;
+  }
+
+    // GABUNGAN INBOX PESAN AKUN & LIVE CHAT DALAM SATU HALAMAN
+  function openCommHubModal(defaultTab = null) {
+    const s = state.settings;
+    const u = getUser();
+    if (!u) return;
+
+    if (u.role === 'admin') {
+      ui.adminTab = 'chat';
+      return openAdminModal();
+    }
+
+    if (defaultTab) ui.commTab = defaultTab;
+    if (!Array.isArray(u.inbox)) u.inbox = [];
+
+    const thread = getOrCreateChatThread(u);
+    if (ui.commTab === 'chat') {
+      let hadUnread = false;
+      thread.messages.forEach(m => {
+        if (m.sender === 'admin' && !m.readByCustomer) {
+          m.readByCustomer = true;
+          hadUnread = true;
+        }
+      });
+      if (hadUnread) { saveState(); renderAll(); }
+    }
+
+    const unreadInbox = u.inbox.filter(m => !m.read).length;
+    const unreadChat = thread.messages.filter(m => m.sender === 'admin' && !m.readByCustomer).length;
+    const waNum = (s.csWhatsapp || '6281234567890').replace(/[^0-9]/g, '');
+    const waText = encodeURIComponent(`Halo Admin ${s.storeName}, saya ${u.name} (@${u.username}).`);
+
+    openModal(`
+      <div class="flex items-center justify-between border-b pb-3 mb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-xl shadow-sm">💬</div>
+          <div>
+            <h3 class="text-sm sm:text-base font-black leading-tight">Inbox & Live Chat ${s.storeName}</h3>
+            <div class="text-[11px] text-emerald-600 font-bold">● Terhubung Langsung • Pengiriman Akun & Bantuan CS</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="https://wa.me/${waNum}?text=${waText}" target="_blank" rel="noopener" class="bg-emerald-100 hover:bg-emerald-200 text-emerald-900 font-extrabold text-[10px] px-2.5 py-1.5 rounded-lg">WhatsApp</a>
+          <button data-action="close-modal" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 font-black text-slate-700">✕</button>
+        </div>
+      </div>
+
+      <!-- Navigasi Satu Halaman: Live Chat vs Inbox Pesan Akun -->
+      <div class="grid grid-cols-2 gap-1.5 bg-slate-100 p-1 rounded-2xl mb-3 text-xs font-black">
+        <button data-action="comm-tab" data-val="chat" class="py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition ${ui.commTab === 'chat' ? 'bg-slate-900 text-amber-400 shadow-sm' : 'text-slate-600 hover:text-slate-900'}">
+          <span>💬 Live Chat Admin</span>
+          ${unreadChat > 0 ? `<span class="bg-rose-600 text-white text-[10px] px-1.5 py-0.2 rounded-full">${unreadChat}</span>` : ''}
+        </button>
+        <button data-action="comm-tab" data-val="inbox" class="py-2 px-3 rounded-xl flex items-center justify-center gap-1.5 transition ${ui.commTab === 'inbox' ? 'bg-slate-900 text-amber-400 shadow-sm' : 'text-slate-600 hover:text-slate-900'}">
+          <span>✉️ Inbox Pesan Akun</span>
+          ${unreadInbox > 0 ? `<span class="bg-rose-600 text-white text-[10px] px-1.5 py-0.2 rounded-full">${unreadInbox}</span>` : ''}
+        </button>
+      </div>
+
+      ${ui.commTab === 'chat' ? `
+        <div id="custChatBox" class="h-72 overflow-y-auto bg-slate-50 border border-slate-200 rounded-2xl p-3 space-y-2.5 text-xs">
+          ${thread.messages.map(m => {
+            const isMe = m.sender === 'customer';
+            return `<div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
+              <div class="text-[10px] font-bold text-slate-400 mb-0.5 px-1">${isMe ? 'Anda' : '🛡️ Admin ' + s.storeName} • ${m.time}</div>
+              <div class="max-w-[82%] px-3.5 py-2.5 rounded-2xl leading-relaxed whitespace-pre-line shadow-sm ${isMe
+                ? 'bg-slate-900 text-white rounded-br-sm'
+                : 'bg-white border border-sky-200 text-slate-800 rounded-bl-sm'}">${m.text}</div>
+            </div>`;
+          }).join('')}
+        </div>
+
+        <div class="flex gap-1.5 overflow-x-auto py-2 text-[10px] font-bold">
+          <button data-action="quick-chat-msg" data-val="Halo Admin, apakah stok akun game masih tersedia?" class="bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-900 px-2.5 py-1 rounded-full whitespace-nowrap">Stok akun ready?</button>
+          <button data-action="quick-chat-msg" data-val="Min, tolong bantu cek pesanan saya." class="bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-900 px-2.5 py-1 rounded-full whitespace-nowrap">Cek pesanan saya</button>
+          <button data-action="quick-chat-msg" data-val="Bagaimana cara bayar menggunakan Coin?" class="bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-900 px-2.5 py-1 rounded-full whitespace-nowrap">Cara pakai Coin?</button>
+        </div>
+
+        <div class="flex gap-2 pt-1">
+          <input id="custChatInput" type="text" placeholder="Ketik pesan obrolan ke Admin..." class="flex-1 bg-slate-50 border border-slate-300 focus:bg-white focus:border-sky-400 rounded-xl px-3.5 py-2.5 text-xs outline-none" />
+          <button data-action="send-cust-chat" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs shadow">Kirim ➤</button>
+        </div>
+      ` : `
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-[11px] text-slate-500">Data akun game, voucher & konfirmasi pesanan masuk ke sini.</span>
+          ${unreadInbox > 0 ? `<button data-action="mark-all-read" class="bg-sky-100 hover:bg-sky-200 text-sky-900 font-extrabold text-[10px] px-2.5 py-1 rounded-lg">Tandai Dibaca</button>` : ''}
+        </div>
+        <div class="space-y-2.5 text-xs max-h-80 overflow-y-auto">
+          ${u.inbox.length === 0 ? '<p class="text-center text-slate-400 py-8">Belum ada pesan masuk di Inbox Anda.</p>' : u.inbox.map((m, idx) => `
+            <div class="border rounded-2xl p-3.5 ${m.read ? 'bg-white border-slate-200' : 'bg-sky-50/90 border-sky-300 shadow-sm'} space-y-2">
+              <div class="flex items-start justify-between gap-2">
+                <div class="font-black text-slate-900 flex items-center gap-1.5">
+                  ${!m.read ? '<span class="w-2 h-2 rounded-full bg-rose-500 shrink-0"></span>' : ''}
+                  <span>${m.title}</span>
+                </div>
+                <span class="text-[10px] text-slate-400 shrink-0">${m.date || ''}</span>
+              </div>
+              <p class="text-slate-600 leading-relaxed whitespace-pre-line">${m.body}</p>
+              ${m.credentials ? `
+                <div class="bg-slate-900 text-amber-300 rounded-xl p-2.5 font-mono text-[11px] space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] text-sky-300 font-sans font-bold uppercase">🔐 Data Item / Akun Terkirim:</span>
+                    <button data-action="copy-text" data-val="${encodeURIComponent(m.credentials)}" class="bg-amber-400 text-slate-950 font-sans font-black text-[10px] px-2 py-0.5 rounded">Salin Data</button>
+                  </div>
+                  <div class="whitespace-pre-line break-all text-white">${m.credentials}</div>
+                </div>
+              ` : ''}
+              <div class="flex items-center justify-between pt-1">
+                ${m.orderId ? `<button data-action="open-receipt" data-id="${m.orderId}" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black px-3 py-1.5 rounded-lg text-[11px]">🧾 Lihat Bukti Transaksi</button>` : '<span></span>'}
+                ${!m.read ? `<button data-action="read-msg" data-val="${idx}" class="text-sky-700 font-bold text-[11px]">Tandai Sudah Dibaca</button>` : '<span class="text-[10px] text-slate-400">✓ Dibaca</span>'}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    `);
+
+    if (ui.commTab === 'chat') {
+      const box = document.getElementById('custChatBox');
+      if (box) box.scrollTop = box.scrollHeight;
+    }
+  }
+
+  function openCsModal() { openCommHubModal('chat'); }
+  function openInboxModal() { openCommHubModal('inbox'); }
+
+  // SYARAT & KETENTUAN PENGGUNA
+  function openTermsModal() {
+    const s = state.settings;
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <h3 class="text-lg font-black mb-2">📜 Syarat & Ketentuan Pengguna</h3>
+      <div class="space-y-2 text-xs text-slate-600 leading-relaxed max-h-80 overflow-y-auto">
+        <p><b>1. Ketentuan Umum:</b> Dengan menggunakan layanan <b>${s.storeName}</b>, pengguna menyetujui seluruh aturan transaksi digital yang berlaku.</p>
+        <p><b>2. Kesalahan Input ID / Nomor:</b> Pastikan User ID, Server/Zone ID, atau Nomor HP tujuan sudah benar sebelum melakukan pembayaran. Kesalahan pengisian data oleh pembeli bukan tanggung jawab toko.</p>
+        <p><b>3. Garansi Akun Game:</b> Seluruh akun game yang dijual bergaransi anti-hackback 100% selama pembeli tidak mengubah email/bind di luar panduan serah terima yang dikirimkan ke Inbox.</p>
+        <p><b>4. Reward Coin & Promo:</b> Saldo Coin tidak dapat diuangkan dan hanya dapat ditukarkan untuk diskon/pembayaran produk maupun Spin Wheel Gacha di dalam platform ${s.storeName}.</p>
+      </div>
+    `);
+  }
+
+  // BUKTI TRANSAKSI DIGITAL & DOWNLOAD PNG
+  function openReceiptModal(orderId) {
+    const ord = state.orders.find(x => x.id === orderId);
+    if (!ord) return alert('Data transaksi tidak ditemukan.');
+    const s = state.settings;
+    const statusBadge = ord.status === 'DONE' ? 'SELESAI & TERKIRIM'
+                      : ord.status === 'PAID' ? 'LUNAS TERVERIFIKASI'
+                      : ord.status === 'PROCESS' ? 'SEDANG DIPROSES'
+                      : ord.status === 'CANCELLED' ? 'DIBATALKAN'
+                      : 'MENUNGGU PEMBAYARAN';
+    const statusColor = (ord.status === 'DONE' || ord.status === 'PAID')
+      ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+      : 'bg-amber-100 text-amber-800 border-amber-300';
+
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <div class="border-2 border-dashed border-slate-300 rounded-2xl p-4 bg-slate-50/70 space-y-3 text-xs">
+        <div class="text-center border-b border-slate-200 pb-3">
+          <div class="rif-title text-xl font-black">${s.storeName}</div>
+          <div class="text-[10px] text-slate-500 font-bold">${s.tagline}</div>
+          <div class="mt-2 inline-block px-3 py-1 rounded-full border font-black text-[10px] ${statusColor}">${statusBadge}</div>
+        </div>
+
+        <div class="space-y-1.5">
+          <div class="flex justify-between"><span class="text-slate-500">No. Bukti Transaksi</span><span class="font-mono font-black">#${ord.code}</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Tanggal & Waktu</span><span class="font-bold">${ord.createdAt || getNowFormatted()}</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Pembeli</span><span class="font-bold">${ord.userName}</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Metode Bayar</span><span class="font-bold">${ord.channel}</span></div>
+        </div>
+
+        <div class="border-t border-b border-slate-200 py-2.5 space-y-2">
+          <div class="font-black text-slate-700 uppercase text-[10px]">Rincian Item Dipesan</div>
+          ${ord.items.map(it => `
+            <div class="bg-white rounded-xl p-2.5 border border-slate-200">
+              <div class="flex justify-between font-extrabold">
+                <span>${it.title} × ${it.qty || 1}</span>
+                <span>${fmtRp((it.price || 0) * (it.qty || 1))}</span>
+              </div>
+              <div class="text-[11px] text-sky-700 font-semibold mt-0.5">Tujuan: ${it.target || '-'}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        ${ord.deliveryNote ? `
+          <div class="bg-slate-900 text-white rounded-xl p-3 space-y-1">
+            <div class="text-[10px] font-black text-amber-400 uppercase">📦 Keterangan Pengiriman / Data Akun</div>
+            <div class="font-mono text-[11px] whitespace-pre-line break-all">${ord.deliveryNote}</div>
+          </div>
+        ` : ''}
+
+        <div class="space-y-1">
+          ${ord.subtotal ? `<div class="flex justify-between text-slate-500"><span>Subtotal</span><span>${fmtRp(ord.subtotal)}</span></div>` : ''}
+          ${ord.promoDisc > 0 ? `<div class="flex justify-between text-emerald-600 font-bold"><span>Diskon Promo</span><span>-${fmtRp(ord.promoDisc)}</span></div>` : ''}
+          ${ord.coinDisc > 0 ? `<div class="flex justify-between text-amber-700 font-bold"><span>Potongan Coin (${ord.coinUsed || 0} Coin)</span><span>-${fmtRp(ord.coinDisc)}</span></div>` : ''}
+          <div class="flex justify-between font-black text-sm pt-1 border-t">
+            <span>Total Dibayar</span>
+            <span class="text-sky-600">${ord.total === 0 ? 'Rp 0 (Lunas Coin/Hadiah)' : fmtRp(ord.total)}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 mt-3 text-xs">
+        <button data-action="download-receipt" data-id="${ord.id}" class="bg-slate-900 hover:bg-slate-800 text-amber-400 font-black py-3 rounded-xl">⬇️ Unduh Struk (PNG)</button>
+        <button data-action="open-orders" class="bg-slate-100 hover:bg-slate-200 text-slate-900 font-black py-3 rounded-xl">← Kembali ke Order</button>
+      </div>
+    `);
+  }
+
+  function downloadReceiptPNG(orderId) {
+    const ord = state.orders.find(x => x.id === orderId);
+    if (!ord) return;
+    const s = state.settings;
+    const cv = document.createElement('canvas');
+    cv.width = 520;
+    cv.height = 680;
+    const ctx = cv.getContext('2d');
+
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillRect(0, 0, cv.width, cv.height);
+
+    // Header
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(0, 0, cv.width, 115);
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = '900 30px Arial Black, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(s.storeName, cv.width / 2, 52);
+    ctx.fillStyle = '#e2e8f0';
+    ctx.font = 'bold 13px sans-serif';
+    ctx.fillText(s.tagline, cv.width / 2, 76);
+    ctx.fillStyle = '#fbbf24';
+    ctx.font = 'bold 12px sans-serif';
+    ctx.fillText('BUKTI TRANSAKSI RESMI', cv.width / 2, 98);
+
+    // Body Info
+    ctx.textAlign = 'left';
+    let y = 155;
+    const rows = [
+      ['No. Invoice', '#' + ord.code],
+      ['Status', ord.status],
+      ['Tanggal', ord.createdAt || getNowFormatted()],
+      ['Pembeli', ord.userName],
+      ['Pembayaran', ord.channel]
+    ];
+    rows.forEach(([k, v]) => {
+      ctx.fillStyle = '#64748b';
+      ctx.font = '14px sans-serif';
+      ctx.fillText(k, 32, y);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 14px sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(String(v), cv.width - 32, y);
+      ctx.textAlign = 'left';
+      y += 30;
+    });
+
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.beginPath(); ctx.moveTo(32, y); ctx.lineTo(cv.width - 32, y); ctx.stroke();
+    y += 28;
+
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 14px sans-serif';
+    ctx.fillText('Item Dipesan:', 32, y);
+    y += 24;
+    ord.items.slice(0, 4).forEach(it => {
+      ctx.fillStyle = '#1e293b';
+      ctx.font = 'bold 13px sans-serif';
+      ctx.fillText(`• ${it.title} (${fmtRp(it.price)})`, 32, y);
+      y += 19;
+      ctx.fillStyle = '#0284c7';
+      ctx.font = '12px sans-serif';
+      ctx.fillText(`  Tujuan: ${it.target || '-'}`, 32, y);
+      y += 24;
+    });
+
+    if (ord.deliveryNote) {
+      y += 6;
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(32, y, cv.width - 64, 72);
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('DATA PENGIRIMAN / AKUN:', 44, y + 20);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '12px monospace';
+      ctx.fillText(String(ord.deliveryNote).replace(/\n/g, ' | ').slice(0, 56), 44, y + 44);
+      y += 90;
+    }
+
+    y = Math.max(y + 10, 560);
+    ctx.strokeStyle = '#0f172a';
+    ctx.beginPath(); ctx.moveTo(32, y); ctx.lineTo(cv.width - 32, y); ctx.stroke();
+    y += 34;
+    ctx.fillStyle = '#0f172a';
+    ctx.font = 'bold 18px sans-serif';
+    ctx.fillText('TOTAL BAYAR', 32, y);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#0284c7';
+    ctx.fillText(fmtRp(ord.total), cv.width - 32, y);
+
+    const a = document.createElement('a');
+    a.download = `Bukti-Transaksi-${ord.code}.png`;
+    a.href = cv.toDataURL('image/png');
+    a.click();
+  }
+
+  function getGachaOddsList(mode = 'regular') {
+    const prizes = state.gachaPrizes || [];
+    const adjusted = prizes.map(p => {
+      let w = Math.max(0, Number(p.weight || 0));
+      if (mode === 'sultan' && w > 0 && w <= 15) w = w * 2.5;
+      return { ...p, effWeight: w };
+    });
+    const totalW = adjusted.reduce((sum, x) => sum + x.effWeight, 0);
+    return adjusted.map(x => ({
+      ...x,
+      pct: totalW > 0 ? ((x.effWeight / totalW) * 100) : (100 / Math.max(1, adjusted.length))
+    }));
+  }
+
+  function openGachaModal() {
+    const u = getUser();
+    const s = state.settings;
+    const today = getTodayStr();
+    const checkedToday = u && u.lastCheckinDate === today;
+    const currentStreak = u ? (u.streakDay || 0) : 0;
+    const oddsList = getGachaOddsList(ui.wheelMode);
+
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <div class="flex items-center justify-between mb-3 pr-6">
+        <h3 class="text-base sm:text-lg font-black">🎡 Spin Wheel & Absen 7 Hari</h3>
+        <span class="bg-amber-400 text-slate-950 font-black text-xs px-3 py-1 rounded-full">🪙 ${u ? u.coins : 0} Coin</span>
+      </div>
+      <div class="flex gap-2 border-b pb-2 mb-3 text-xs font-extrabold">
+        <button data-action="gacha-tab" data-val="wheel" class="px-3 py-1.5 rounded-xl ${ui.gachaTab === 'wheel' ? 'bg-slate-900 text-white' : 'bg-slate-100'}">🎡 Spin Wheel (${oddsList.length} Slot)</button>
+        <button data-action="gacha-tab" data-val="checkin" class="px-3 py-1.5 rounded-xl ${ui.gachaTab === 'checkin' ? 'bg-slate-900 text-white' : 'bg-slate-100'}">📅 Absen 7 Hari</button>
+        <button data-action="gacha-tab" data-val="bag" class="px-3 py-1.5 rounded-xl ${ui.gachaTab === 'bag' ? 'bg-slate-900 text-white' : 'bg-slate-100'}">🎁 Tas Hadiah (${u ? (u.prizes || []).length : 0})</button>
+      </div>
+
+      ${ui.gachaTab === 'wheel' ? `
+        <div class="text-center space-y-3">
+          <div class="flex gap-2 justify-center text-xs">
+            <button data-action="wheel-mode" data-val="regular" class="px-3 py-1.5 rounded-xl font-black ${ui.wheelMode === 'regular' ? 'bg-sky-500 text-slate-950' : 'bg-slate-100'}">Reguler (${s.gachaCostRegular} Coin)</button>
+            <button data-action="wheel-mode" data-val="sultan" class="px-3 py-1.5 rounded-xl font-black ${ui.wheelMode === 'sultan' ? 'bg-amber-400 text-slate-950' : 'bg-slate-100'}">Sultan Boost (${s.gachaCostSultan} Coin)</button>
+          </div>
+          <div class="relative w-64 h-64 mx-auto">
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 z-10 text-2xl drop-shadow">🔻</div>
+            <canvas id="spinWheelCanvas" width="256" height="256" class="rounded-full shadow-xl border-4 border-amber-400"></canvas>
+            <button data-action="spin-now" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-slate-900 border-4 border-amber-400 text-amber-400 font-black text-xs shadow-lg hover:scale-105 transition">SPIN!</button>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-2xl p-2.5 text-left">
+            <div class="text-[10px] font-black text-slate-500 uppercase mb-1.5">📊 Daftar Hadiah & Peluang Mendapatkan (${oddsList.length} Slot):</div>
+            <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+              ${oddsList.map(g => `
+                <div class="flex items-center justify-between bg-white border rounded-xl px-2.5 py-1.5">
+                  <span class="font-bold truncate pr-1">${g.icon} ${g.label}</span>
+                  <span class="shrink-0 font-black text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded">${g.pct % 1 === 0 ? g.pct.toFixed(0) : g.pct.toFixed(1)}%</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      ` : ui.gachaTab === 'checkin' ? `
+        <div class="space-y-3 text-xs">
+          <div class="bg-sky-50 border border-sky-200 p-3 rounded-xl flex items-center justify-between">
+            <div>
+              <div class="font-black text-sky-950">Streak Absen Harian (Day 1 – Day 7)</div>
+              <div class="text-slate-600">Tanggal Simulasi: <b>${today}</b> • Streak Aktif: <b>${currentStreak}/7 Hari</b></div>
+            </div>
+            <button data-action="sim-next-day" class="bg-white border px-2.5 py-1.5 rounded-lg font-bold text-[11px]">⏭️ +1 Hari (Simulasi)</button>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            ${(s.streakRewards || [20,30,40,50,75,100,200]).map((rew, idx) => {
+              const dayNum = idx + 1;
+              const done = dayNum <= currentStreak;
+              const isNext = !checkedToday && dayNum === (currentStreak >= 7 ? 1 : currentStreak + 1);
+              return `<div class="p-2.5 rounded-xl border text-center ${done ? 'bg-emerald-50 border-emerald-400' : isNext ? 'bg-amber-50 border-amber-400 ring-2 ring-amber-300' : 'bg-slate-50'}">
+                <div class="font-black text-[11px]">Day ${dayNum}</div>
+                <div class="text-base my-0.5">🪙</div>
+                <div class="font-black text-amber-700">+${rew}</div>
+                <div class="text-[9px] mt-0.5 font-bold">${done ? '✅ Klaim' : isNext ? 'Hari Ini' : 'Terkunci'}</div>
+              </div>`;
+            }).join('')}
+          </div>
+          <button data-action="claim-checkin" ${checkedToday ? 'disabled' : ''} class="w-full ${checkedToday ? 'bg-slate-300 text-slate-600' : 'bg-emerald-500 hover:bg-emerald-400 text-slate-950'} font-black py-3 rounded-xl">
+            ${checkedToday ? '✅ Sudah Absen Hari Ini' : '📅 Klaim Reward Absen Hari Ini'}
+          </button>
+        </div>
+      ` : `
+        <div class="space-y-2 text-xs max-h-64 overflow-y-auto">
+          ${u && (u.prizes || []).length > 0 ? u.prizes.map((pz, idx) => `
+            <div class="border rounded-xl p-2.5 flex items-center justify-between">
+              <div>
+                <div class="font-black">${pz.label}</div>
+                ${pz.code ? `<div class="text-sky-600 font-bold">Kode Voucher: ${pz.code}</div>` : ''}
+              </div>
+              ${pz.claimed ? `<span class="text-emerald-600 font-bold">Terpakai</span>`
+                : `<button data-action="claim-bag-prize" data-val="${idx}" class="bg-slate-900 text-amber-400 font-black px-3 py-1.5 rounded-lg">Klaim</button>`}
+            </div>
+          `).join('') : '<p class="text-center text-slate-400 py-6">Belum ada hadiah di tas.</p>'}
+        </div>
+      `}
+    `);
+    if (ui.gachaTab === 'wheel') drawSpinWheel();
+  }
+
+  function drawSpinWheel() {
+    const cv = document.getElementById('spinWheelCanvas');
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    const prizes = state.gachaPrizes;
+    const n = prizes.length;
+    const arc = (2 * Math.PI) / n;
+    const cx = 128, cy = 128, r = 122;
+    ctx.clearRect(0, 0, 256, 256);
+    for (let i = 0; i < n; i++) {
+      const start = ui.wheelAngle + i * arc - Math.PI / 2;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, r, start, start + arc);
+      ctx.fillStyle = prizes[i].color || '#38bdf8';
+      ctx.fill();
+      ctx.strokeStyle = '#0f172a';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(start + arc / 2);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(`${prizes[i].icon} ${prizes[i].label.slice(0, 14)}`, r - 12, 4);
+      ctx.restore();
+    }
+  }
+
+  // UBAH PROFIL & UPLOAD FOTO PROFIL KONSUMEN
+  function openProfileModal() {
+    const u = getUser();
+    if (!u) return;
+    const previewAvatar = u.avatar
+      ? `<img id="profAvatarPreview" src="${u.avatar}" alt="Foto Profil" class="w-20 h-20 rounded-3xl object-cover border-4 border-sky-400 shadow-md mx-auto" />`
+      : `<div id="profAvatarPreview" class="w-20 h-20 rounded-3xl bg-gradient-to-br from-sky-400 to-indigo-600 text-white font-black text-3xl flex items-center justify-center shadow-md mx-auto">${(u.name || 'U').charAt(0).toUpperCase()}</div>`;
+
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <h3 class="text-lg font-black mb-1">👤 Ubah Profil Akun</h3>
+      <p class="text-[11px] text-slate-500 mb-3">Perbarui foto profil, data diri, atau ganti kata sandi akun Anda.</p>
+
+      <div class="space-y-3 text-xs">
+        <div class="bg-sky-50/80 border border-sky-200 rounded-2xl p-3.5 text-center space-y-2">
+          ${previewAvatar}
+          <div class="flex items-center justify-center gap-2 pt-1">
+            <label class="cursor-pointer bg-slate-900 hover:bg-slate-800 text-amber-400 font-black px-3 py-1.5 rounded-xl text-[11px]">
+              📷 Pilih Gambar Profil
+              <input id="profAvatarInput" type="file" accept="image/*" class="hidden" />
+            </label>
+            ${u.avatar ? `<button data-action="remove-profile-avatar" class="bg-rose-100 hover:bg-rose-200 text-rose-700 font-bold px-2.5 py-1.5 rounded-xl text-[11px]">Hapus Foto</button>` : ''}
+          </div>
+          <div class="text-[10px] text-slate-500">Format JPG / PNG • Otomatis dikompres ringan</div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Nama Lengkap</label>
+            <input id="profName" type="text" value="${(u.name || '').replace(/"/g, '&quot;')}" class="w-full border rounded-xl px-3 py-2 bg-slate-50 focus:bg-white focus:border-sky-400 outline-none" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Username</label>
+            <input id="profUsername" type="text" value="${(u.username || '').replace(/"/g, '&quot;')}" class="w-full border rounded-xl px-3 py-2 bg-slate-50 focus:bg-white focus:border-sky-400 outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">Email</label>
+            <input id="profEmail" type="email" value="${(u.email || '').replace(/"/g, '&quot;')}" class="w-full border rounded-xl px-3 py-2 bg-slate-50 focus:bg-white focus:border-sky-400 outline-none" />
+          </div>
+          <div>
+            <label class="font-bold text-slate-700 block mb-1">No. WhatsApp</label>
+            <input id="profWa" type="text" value="${(u.whatsapp || '').replace(/"/g, '&quot;')}" class="w-full border rounded-xl px-3 py-2 bg-slate-50 focus:bg-white focus:border-sky-400 outline-none" />
+          </div>
+        </div>
+
+        <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-3 space-y-2">
+          <div class="font-black text-amber-950 text-[11px]">🔑 Ganti Password (Kosongkan jika tidak ingin mengganti)</div>
+          <div class="grid grid-cols-2 gap-2">
+            <input id="profNewPass" type="password" placeholder="Password baru..." class="w-full border rounded-xl px-3 py-2 bg-white text-xs" />
+            <input id="profNewPass2" type="password" placeholder="Ulangi password baru..." class="w-full border rounded-xl px-3 py-2 bg-white text-xs" />
+          </div>
+        </div>
+
+        <button data-action="save-profile" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3 rounded-xl text-sm shadow">
+          💾 Simpan Perubahan Profil
+        </button>
+      </div>
+    `);
+
+    const fileInp = document.getElementById('profAvatarInput');
+    if (fileInp) {
+      fileInp.addEventListener('change', async (ev) => {
+        const f = ev.target.files && ev.target.files[0];
+        if (!f) return;
+        const dataUrl = await compressImage(f, 260);
+        const prev = document.getElementById('profAvatarPreview');
+        if (prev) {
+          prev.outerHTML = `<img id="profAvatarPreview" src="${dataUrl}" alt="Preview" class="w-20 h-20 rounded-3xl object-cover border-4 border-sky-400 shadow-md mx-auto" />`;
+        }
+        fileInp.dataset.pendingAvatar = dataUrl;
+      });
+    }
+  }
+
+  function openOrdersModal() {
+    const u = getUser();
+    const list = u ? state.orders.filter(o => o.userId === u.id) : [];
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <div class="flex items-center justify-between mb-3 pr-6">
+        <h3 class="text-lg font-black">📦 Pesanan & Bukti Transaksi</h3>
+        <button data-action="open-inbox" class="bg-sky-100 text-sky-900 font-extrabold text-[11px] px-2.5 py-1.5 rounded-xl">✉️ Buka Inbox</button>
+      </div>
+      <div class="space-y-2.5 text-xs max-h-80 overflow-y-auto">
+        ${list.map(o => `
+          <div class="border rounded-2xl p-3 space-y-2 bg-white">
+            <div class="flex justify-between font-black">
+              <span>#${o.code}</span>
+              <span class="${o.status==='DONE'||o.status==='PAID'?'text-emerald-600':'text-amber-600'}">${o.status}</span>
+            </div>
+            <div class="text-slate-600">${o.items.map(i => `${i.title} (${i.target})`).join(', ')}</div>
+            ${o.deliveryNote ? `<div class="bg-slate-900 text-amber-300 font-mono text-[11px] p-2 rounded-xl whitespace-pre-line">🔐 ${o.deliveryNote}</div>` : ''}
+            <div class="flex items-center justify-between pt-1 border-t">
+              <span class="font-black text-slate-900">${fmtRp(o.total)} • ${o.channel}</span>
+              <div class="flex gap-1.5">
+                ${o.status === 'PENDING' ? `<button data-action="reopen-pay" data-id="${o.id}" class="bg-amber-400 text-slate-950 font-black px-2.5 py-1 rounded-lg">Bayar</button>` : ''}
+                <button data-action="open-receipt" data-id="${o.id}" class="bg-slate-900 text-white font-black px-2.5 py-1 rounded-lg">🧾 Bukti Transaksi</button>
+              </div>
+            </div>
+          </div>
+        `).join('') || '<p class="text-center text-slate-400 py-6">Belum ada riwayat pesanan.</p>'}
+      </div>
+    `);
+  }
+
+  function openAdminModal() {
+    const s = state.settings;
+    openModal(`
+      <button data-action="close-modal" class="float-right font-black">✕</button>
+      <h3 class="text-lg font-black mb-2">${getUser()?.role === 'owner' ? '👑 Dashboard Owner RIFSTORE' : '⚙️ Dashboard Admin RIFSTORE'}</h3>
+      <div class="flex gap-1.5 overflow-x-auto pb-2 mb-3 text-[11px] font-black">
+        <button data-action="admin-tab" data-val="products" class="px-2.5 py-1.5 rounded-lg whitespace-nowrap ${ui.adminTab==='products'?'bg-slate-900 text-amber-400':'bg-slate-100'}">📦 Produk</button>
+        <button data-action="admin-tab" data-val="orders" class="px-2.5 py-1.5 rounded-lg whitespace-nowrap ${ui.adminTab==='orders'?'bg-slate-900 text-amber-400':'bg-slate-100'}">🧾 Order & Inbox</button>
+        <button data-action="admin-tab" data-val="chat" class="px-2.5 py-1.5 rounded-lg whitespace-nowrap ${ui.adminTab==='chat'?'bg-slate-900 text-amber-400':'bg-slate-100'}">💬 Live Chat ${(() => {
+          const uCnt = state.chats.reduce((s, c) => s + (c.messages || []).filter(m => m.sender === 'customer' && !m.readByAdmin).length, 0);
+          return uCnt > 0 ? `<span class="ml-1 bg-rose-600 text-white text-[9px] px-1.5 py-0.2 rounded-full">${uCnt}</span>` : '';
+        })()}</button>
+        <button data-action="admin-tab" data-val="users" class="px-2.5 py-1.5 rounded-lg whitespace-nowrap ${ui.adminTab==='users'?'bg-slate-900 text-amber-400':'bg-slate-100'}">👥 Acount</button>
+        <button data-action="admin-tab" data-val="promos" class="px-2.5 py-1.5 rounded-lg whitespace-nowrap ${ui.adminTab==='promos'?'bg-slate-900 text-amber-400':'bg-slate-100'}">🎟️ Promo</button>
+        <button data-action="admin-tab" data-val="coin_gacha" class="px-2.5 py-1.5 rounded-lg whitespace-nowrap ${ui.adminTab==='coin_gacha'?'bg-slate-900 text-amber-400':'bg-slate-100'}">🪙 Coin & Absen 7H</button>
+        <button data-action="admin-tab" data-val="settings" class="px-2.5 py-1.5 rounded-lg whitespace-nowrap ${ui.adminTab==='settings'?'bg-slate-900 text-amber-400':'bg-slate-100'}">🎨 Web & Payment</button>
+      </div>
+
+      ${ui.adminTab === 'products' ? `
+        <div class="space-y-3 text-xs">
+          ${(() => {
+            const ep = ui.editProdId ? state.products.find(x => x.id === ui.editProdId) : null;
+            return `
+            <div class="${ep ? 'bg-amber-50 border-amber-300' : 'bg-sky-50 border-sky-200'} border p-3 rounded-xl space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-black ${ep ? 'text-amber-950' : 'text-sky-950'}">${ep ? '✏️ Edit / Update Produk: ' + ep.title : '➕ Tambah Produk Baru'}</span>
+                ${ep ? `<button data-action="cancel-edit-product" class="bg-white border px-2 py-0.5 rounded-lg font-bold text-[11px] text-slate-600">Batal Edit</button>` : ''}
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="font-bold text-[10px] block mb-0.5">Nama Produk / Game</label>
+                  <input id="admPTitle" type="text" value="${ep ? ep.title.replace(/"/g, '&quot;') : ''}" placeholder="Nama Produk / Game" class="w-full border rounded-lg px-2.5 py-2 bg-white" />
+                </div>
+                <div>
+                  <label class="font-bold text-[10px] block mb-0.5">Kategori</label>
+                  <select id="admPCat" class="w-full border rounded-lg px-2 py-2 bg-white font-bold">
+                    <option value="topup" ${ep && ep.category==='topup'?'selected':''}>Top Up Games</option>
+                    <option value="akun" ${ep && ep.category==='akun'?'selected':''}>Akun Game</option>
+                    <option value="pulsa" ${ep && ep.category==='pulsa'?'selected':''}>Voucher & Pulsa</option>
+                  </select>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="font-bold text-[10px] block mb-0.5">Badge Label</label>
+                  <input id="admPBadge" type="text" value="${ep ? (ep.badge || '').replace(/"/g, '&quot;') : ''}" placeholder="Mis: SERVER INDONESIA" class="w-full border rounded-lg px-2.5 py-2 bg-white" />
+                </div>
+                <div>
+                  <label class="font-bold text-[10px] block mb-0.5">Harga Dasar (Rp)</label>
+                  <input id="admPPrice" type="number" value="${ep ? ep.price : ''}" placeholder="Harga Dasar (Rp)" class="w-full border rounded-lg px-2.5 py-2 bg-white" />
+                </div>
+              </div>
+              <div>
+                <label class="font-bold text-[10px] block mb-0.5">Deskripsi Produk</label>
+                <input id="admPDesc" type="text" value="${ep ? (ep.desc || '').replace(/"/g, '&quot;') : ''}" placeholder="Keterangan produk..." class="w-full border rounded-lg px-2.5 py-2 bg-white" />
+              </div>
+
+              <!-- Detail Opsional Akun / Pulsa -->
+              <div class="grid grid-cols-3 gap-1.5">
+                <input id="admPRank" type="text" value="${ep ? (ep.rank || '').replace(/"/g, '&quot;') : ''}" placeholder="Rank (Akun)" class="border rounded-lg px-2 py-1.5 bg-white text-[11px]" />
+                <input id="admPSkins" type="text" value="${ep ? (ep.skins || '').replace(/"/g, '&quot;') : ''}" placeholder="Info Skin (Akun)" class="border rounded-lg px-2 py-1.5 bg-white text-[11px]" />
+                <input id="admPBind" type="text" value="${ep ? (ep.bind || ep.operator || '').replace(/"/g, '&quot;') : ''}" placeholder="Bind / Operator" class="border rounded-lg px-2 py-1.5 bg-white text-[11px]" />
+              </div>
+
+              <!-- Paket / Varian Nominal -->
+              <div class="bg-white/80 border rounded-xl p-2 space-y-1.5">
+                <div class="flex items-center justify-between">
+                  <span class="font-black text-[10px] text-slate-700">💎 Paket / Varian Nominal (${ui.tempProdVariants.length})</span>
+                  <button data-action="add-temp-variant" class="bg-sky-100 hover:bg-sky-200 text-sky-900 font-black text-[10px] px-2 py-0.5 rounded">+ Tambah Varian</button>
+                </div>
+                <div class="space-y-1 max-h-28 overflow-y-auto">
+                  ${ui.tempProdVariants.map((v, idx) => `
+                    <div class="flex gap-1.5 items-center">
+                      <input type="text" data-var-name="${idx}" value="${(v.name || '').replace(/"/g, '&quot;')}" placeholder="Nama Paket (Mis: 86 Diamonds)" class="flex-1 border rounded px-2 py-1 text-[11px] bg-white" />
+                      <input type="number" data-var-price="${idx}" value="${v.price || 0}" placeholder="Harga" class="w-24 border rounded px-2 py-1 text-[11px] bg-white" />
+                      <button data-action="del-temp-variant" data-val="${idx}" class="text-rose-600 font-black px-1.5">✕</button>
+                    </div>
+                  `).join('') || '<div class="text-[10px] text-slate-400">Tanpa varian (menggunakan Harga Dasar).</div>'}
+                </div>
+              </div>
+
+              <!-- Galeri Gambar Saat Ini + Upload Baru -->
+              <div class="bg-white/80 border rounded-xl p-2 space-y-1.5">
+                <label class="font-bold block text-[10px]">🖼️ Gambar Produk (${ui.tempProdImages.length} tersimpan) — Upload baru untuk menambah:</label>
+                ${ui.tempProdImages.length > 0 ? `
+                  <div class="flex gap-2 overflow-x-auto pb-1">
+                    ${ui.tempProdImages.map((src, idx) => `
+                      <div class="relative shrink-0">
+                        <img src="${src}" class="w-12 h-16 object-cover rounded-lg border" />
+                        <button data-action="del-temp-img" data-val="${idx}" class="absolute -top-1 -right-1 bg-rose-600 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">✕</button>
+                      </div>
+                    `).join('')}
+                  </div>
+                ` : ''}
+                <input id="admPFiles" type="file" accept="image/*" multiple class="w-full text-[11px]" />
+              </div>
+
+              <button data-action="save-product" class="w-full ${ep ? 'bg-emerald-500 hover:bg-emerald-400 text-slate-950' : 'bg-slate-900 text-amber-400'} font-black py-2.5 rounded-xl">
+                ${ep ? '💾 Update / Simpan Perubahan Produk' : '➕ Simpan Produk Baru'}
+              </button>
+            </div>
+            `;
+          })()}
+
+          <div class="space-y-1.5 max-h-52 overflow-y-auto">
+            <div class="font-black text-slate-600">Daftar Produk Terupload (${state.products.length}):</div>
+            ${state.products.map(p => `<div class="flex justify-between items-center border rounded-xl p-2 bg-white gap-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <img src="${(p.images && p.images[0]) || ''}" class="w-8 h-10 rounded object-cover border shrink-0" />
+                <div class="min-w-0">
+                  <div class="font-extrabold truncate">${p.title}</div>
+                  <div class="text-[10px] text-slate-500"><span class="uppercase text-sky-600 font-bold">${p.category}</span> • ${fmtRp(p.price)} ${(p.variants && p.variants.length) ? `• ${p.variants.length} Paket` : ''}</div>
+                </div>
+              </div>
+              <div class="flex gap-1.5 shrink-0">
+                <button data-action="edit-product" data-id="${p.id}" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-black px-2.5 py-1 rounded-lg">✏️ Edit</button>
+                <button data-action="del-product" data-id="${p.id}" class="bg-rose-100 text-rose-700 font-bold px-2.5 py-1 rounded-lg">Hapus</button>
+              </div>
+            </div>`).join('')}
+          </div>
+        </div>
+      ` : ui.adminTab === 'orders' ? `
+        <div class="space-y-2.5 text-xs max-h-80 overflow-y-auto">
+          ${(() => {
+            const delOrd = ui.deliverOrderId ? state.orders.find(x => x.id === ui.deliverOrderId) : null;
+            if (!delOrd) return '';
+            return `<div class="bg-sky-50 border border-sky-300 p-3 rounded-xl space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-sky-950">✉️ Kirim Item / Akun ke Inbox: #${delOrd.code} (${delOrd.userName})</span>
+                <button data-action="cancel-deliver" class="text-slate-500 font-bold">Tutup</button>
+              </div>
+              <div class="text-[11px] text-slate-600">Pesanan: <b>${delOrd.items.map(i => `${i.title} → ${i.target}`).join(', ')}</b></div>
+              <textarea id="admDeliveryCreds" rows="3" placeholder="Masukkan Email/Password Akun Game, Kode Voucher, atau Nomor Serial SN Top-Up..." class="w-full border rounded-xl p-2.5 bg-white font-mono text-xs">${delOrd.deliveryNote || ''}</textarea>
+              <button data-action="send-order-inbox" data-id="${delOrd.id}" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-2.5 rounded-xl">📤 Kirim ke Inbox Konsumen & Selesaikan (DONE)</button>
+            </div>`;
+          })()}
+
+          ${state.orders.map(o => `
+            <div class="border rounded-xl p-2.5 space-y-1.5 bg-white">
+              <div class="flex justify-between items-center">
+                <div>
+                  <b>#${o.code}</b> (${o.userName}) • <span class="text-sky-600 font-bold">${fmtRp(o.total)}</span>
+                  <div class="text-[10px] text-slate-500">${o.items.map(i => `${i.title} (${i.target})`).join(', ')}</div>
+                </div>
+                <select data-action="upd-order-status" data-id="${o.id}" class="border rounded-lg px-2 py-1 font-bold">
+                  ${['PENDING','PAID','PROCESS','DONE','CANCELLED'].map(st => `<option ${o.status===st?'selected':''}>${st}</option>`).join('')}
+                </select>
+              </div>
+              ${o.deliveryNote ? `<div class="text-[10px] bg-slate-100 p-1.5 rounded font-mono truncate">Terkirim: ${o.deliveryNote}</div>` : ''}
+              <div class="flex gap-1.5 pt-1 border-t">
+                <button data-action="open-deliver" data-id="${o.id}" class="bg-slate-900 text-amber-400 font-black px-2.5 py-1 rounded-lg">✉️ Kirim Data Akun / SN ke Inbox</button>
+                <button data-action="open-receipt" data-id="${o.id}" class="bg-sky-100 text-sky-900 font-extrabold px-2.5 py-1 rounded-lg">🧾 Bukti</button>
+              </div>
+            </div>
+          `).join('') || '<p class="text-center text-slate-400 py-4">Belum ada pesanan.</p>'}
+        </div>
+      ` : ui.adminTab === 'chat' ? `
+        <div class="space-y-3 text-xs">
+          ${(() => {
+            const customers = state.users.filter(x => x.role === 'customer');
+            if (!ui.activeChatUserId) {
+              const unreadThread = state.chats.find(c => (c.messages || []).some(m => m.sender === 'customer' && !m.readByAdmin));
+              ui.activeChatUserId = unreadThread ? unreadThread.userId : (state.chats[0]?.userId || customers[0]?.id || null);
+            }
+            const activeCust = customers.find(x => x.id === ui.activeChatUserId);
+            const thread = activeCust ? getOrCreateChatThread(activeCust) : null;
+            if (thread) {
+              let changed = false;
+              thread.messages.forEach(m => {
+                if (m.sender === 'customer' && !m.readByAdmin) { m.readByAdmin = true; changed = true; }
+              });
+              if (changed) saveState();
+            }
+
+            return `
+              <!-- Pilih Konsumen untuk Diajak Chat -->
+              <div class="flex gap-1.5 overflow-x-auto pb-1">
+                ${customers.map(c => {
+                  const th = state.chats.find(x => x.userId === c.id);
+                  const unread = th ? (th.messages || []).filter(m => m.sender === 'customer' && !m.readByAdmin).length : 0;
+                  const isSel = c.id === ui.activeChatUserId;
+                  return `<button data-action="select-chat-user" data-id="${c.id}" class="px-3 py-1.5 rounded-xl font-extrabold whitespace-nowrap border flex items-center gap-1.5 ${isSel ? 'bg-sky-500 text-slate-950 border-sky-600' : 'bg-white text-slate-700 border-slate-200'}">
+                    <span>👤 ${c.name}</span>
+                    ${unread > 0 ? `<span class="bg-rose-600 text-white text-[9px] px-1.5 rounded-full">${unread}</span>` : ''}
+                  </button>`;
+                }).join('')}
+              </div>
+
+              ${thread ? `
+                <div class="bg-slate-900 text-white px-3 py-2 rounded-xl flex items-center justify-between">
+                  <div>
+                    <span class="font-black text-sky-300">💬 Chat dengan ${activeCust.name}</span>
+                    <span class="text-[10px] text-slate-400 ml-1">(@${activeCust.username} • WA: ${activeCust.whatsapp || '-'})</span>
+                  </div>
+                  <button data-action="clear-chat-thread" data-id="${activeCust.id}" class="text-[10px] text-rose-400 hover:underline font-bold">Bersihkan</button>
+                </div>
+
+                <div id="adminChatBox" class="h-64 overflow-y-auto bg-slate-50 border border-slate-200 rounded-2xl p-3 space-y-2.5">
+                  ${thread.messages.map(m => {
+                    const isAdmin = m.sender === 'admin';
+                    return `<div class="flex flex-col ${isAdmin ? 'items-end' : 'items-start'}">
+                      <div class="text-[10px] font-bold text-slate-400 mb-0.5 px-1">${isAdmin ? '🛡️ Admin (Anda)' : '👤 ' + activeCust.name} • ${m.time}</div>
+                      <div class="max-w-[82%] px-3.5 py-2 rounded-2xl leading-relaxed whitespace-pre-line shadow-sm ${isAdmin
+                        ? 'bg-sky-500 text-slate-950 font-semibold rounded-br-sm'
+                        : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm'}">${m.text}</div>
+                    </div>`;
+                  }).join('')}
+                </div>
+
+                <div class="flex gap-2">
+                  <input id="adminChatInput" type="text" placeholder="Balas pesan ke ${activeCust.name}..." class="flex-1 border border-slate-300 rounded-xl px-3 py-2.5 bg-white outline-none focus:border-sky-400" />
+                  <button data-action="send-admin-chat" data-id="${activeCust.id}" class="bg-slate-900 hover:bg-slate-800 text-amber-400 font-black px-4 py-2.5 rounded-xl">Kirim ➤</button>
+                </div>
+              ` : '<p class="text-center text-slate-400 py-6">Belum ada akun konsumen terdaftar.</p>'}
+            `;
+          })()}
+        </div>
+      ` : ui.adminTab === 'users' ? `
+        <div class="space-y-3 text-xs">
+          <!-- Tombol Buka Form Tambah Akun -->
+          <div class="flex justify-between items-center bg-slate-100 p-2.5 rounded-xl">
+            <span class="font-black text-slate-700">👥 Kelola & Buat Akun Baru</span>
+            <button data-action="toggle-new-user-form" class="bg-slate-900 text-amber-400 font-black px-3 py-1.5 rounded-lg text-[11px]">
+              ${ui.showNewUserForm ? '✕ Tutup Form' : '+ Buat Akun Baru'}
+            </button>
+          </div>
+
+          <!-- Form Tambah Akun Baru oleh Admin -->
+          ${ui.showNewUserForm ? `
+            <div class="bg-emerald-50 border border-emerald-300 p-3 rounded-xl space-y-2 animate-fade-in">
+              <div class="font-black text-emerald-950">➕ Buat Akun Admin atau Konsumen Baru</div>
+              <div class="grid grid-cols-2 gap-2">
+                <input id="admNewName" type="text" placeholder="Nama Lengkap" class="border rounded-lg px-2.5 py-1.5 bg-white" />
+                <input id="admNewUser" type="text" placeholder="Username" class="border rounded-lg px-2.5 py-1.5 bg-white" />
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <input id="admNewEmail" type="email" placeholder="Email" class="border rounded-lg px-2.5 py-1.5 bg-white" />
+                <input id="admNewWa" type="text" placeholder="No. WhatsApp" class="border rounded-lg px-2.5 py-1.5 bg-white" />
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                <input id="admNewPass" type="password" placeholder="Password" class="border rounded-lg px-2.5 py-1.5 bg-white" />
+                <input id="admNewCoins" type="number" value="100" placeholder="Saldo Coin" class="border rounded-lg px-2.5 py-1.5 bg-white" />
+                <select id="admNewRole" class="border rounded-lg px-2 py-1.5 bg-white font-bold">
+                  <option value="customer">Role: Konsumen</option>
+                  <option value="admin">Role: Admin</option>
+                  <option value="owner">Role: Owner</option>
+                </select>
+              </div>
+              <button data-action="save-new-user-by-admin" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-2 rounded-xl">✨ Simpan Akun Baru</button>
+            </div>
+          ` : ''}
+
+          <div class="flex gap-2">
+            <input id="admUserSearch" type="text" value="${ui.userSearch || ''}" placeholder="Cari nama, username, email, atau WA..." class="flex-1 border rounded-xl px-3 py-2 bg-slate-50" />
+            <button data-action="filter-users" class="bg-slate-900 text-white font-black px-3 rounded-xl">Cari</button>
+          </div>
+          ${(() => {
+            const editU = ui.editUserId ? state.users.find(x => x.id === ui.editUserId) : null;
+            if (!editU) return '';
+            return `<div class="bg-sky-50 border border-sky-300 p-3 rounded-xl space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-sky-950">✏️ Kelola Akun: ${editU.name} (@${editU.username})</span>
+                <button data-action="cancel-edit-user" class="text-slate-500 font-bold">Tutup</button>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div><label class="font-bold text-[10px]">Nama Lengkap</label><input id="admEditUName" type="text" value="${editU.name}" class="w-full border rounded-lg px-2.5 py-1.5 bg-white" /></div>
+                <div><label class="font-bold text-[10px]">Username</label><input id="admEditUUser" type="text" value="${editU.username}" class="w-full border rounded-lg px-2.5 py-1.5 bg-white" /></div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div><label class="font-bold text-[10px]">Email</label><input id="admEditUEmail" type="email" value="${editU.email}" class="w-full border rounded-lg px-2.5 py-1.5 bg-white" /></div>
+                <div><label class="font-bold text-[10px]">No. WhatsApp</label><input id="admEditUWa" type="text" value="${editU.whatsapp || ''}" class="w-full border rounded-lg px-2.5 py-1.5 bg-white" /></div>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                <div><label class="font-bold text-[10px]">Saldo Coin</label><input id="admEditUCoins" type="number" value="${editU.coins}" class="w-full border rounded-lg px-2.5 py-1.5 bg-white" /></div>
+                <div><label class="font-bold text-[10px]">Streak (0-7)</label><input id="admEditUStreak" type="number" min="0" max="7" value="${editU.streakDay || 0}" class="w-full border rounded-lg px-2.5 py-1.5 bg-white" /></div>
+                <div>
+                  <label class="font-bold text-[10px]">Role Akses</label>
+                  <select id="admEditURole" class="w-full border rounded-lg px-1.5 py-1.5 bg-white font-bold">
+                    <option value="customer" ${editU.role==='customer'?'selected':''}>Konsumen</option>
+                    <option value="admin" ${editU.role==='admin'?'selected':''}>Admin</option>
+                    <option value="owner" ${editU.role==='owner'?'selected':''}>Owner</option>
+                  </select>
+                </div>
+              </div>
+              <div class="bg-amber-50 border border-amber-200 p-2 rounded-lg space-y-1.5">
+                <label class="font-black text-[10px] text-amber-950 block">🔑 Reset Sandi / Password Baru (Kosongkan jika tidak diubah)</label>
+                <div class="flex gap-1.5">
+                  <input id="admEditUPass" type="text" placeholder="Ketik sandi baru..." class="flex-1 border rounded-lg px-2.5 py-1.5 bg-white" />
+                  <button data-action="gen-rand-pass" class="bg-amber-400 text-slate-950 font-black px-2.5 py-1.5 rounded-lg text-[10px]">Acak Sandi</button>
+                </div>
+              </div>
+              <div class="flex gap-2 pt-1">
+                <button data-action="save-edit-user" data-id="${editU.id}" class="flex-1 bg-slate-900 text-amber-400 font-black py-2 rounded-xl">💾 Simpan Perubahan Akun</button>
+                <button data-action="toggle-suspend-user" data-id="${editU.id}" class="${editU.suspended ? 'bg-emerald-500 text-slate-950' : 'bg-amber-500 text-slate-950'} font-black px-3 py-2 rounded-xl">
+                  ${editU.suspended ? '✅ Aktifkan' : '🚫 Nonaktifkan'}
+                </button>
+              </div>
+            </div>`;
+          })()}
+          <div class="space-y-2 max-h-72 overflow-y-auto">
+            ${(() => {
+              const q = (ui.userSearch || '').toLowerCase();
+              const customers = state.users.filter(x => x.role === 'customer' && (!q || x.name.toLowerCase().includes(q) || x.username.toLowerCase().includes(q) || x.email.toLowerCase().includes(q) || (x.whatsapp || '').includes(q)));
+              if (!customers.length) return '<p class="text-center text-slate-400 py-4">Tidak ada akun konsumen ditemukan.</p>';
+              return customers.map(c => {
+                const ordCount = state.orders.filter(o => o.userId === c.id).length;
+                return `<div class="border rounded-xl p-2.5 ${c.suspended ? 'bg-rose-50/70 border-rose-200' : 'bg-white'} space-y-1.5">
+                  <div class="flex justify-between items-start gap-2">
+                    <div>
+                      <div class="font-black flex items-center gap-1.5">
+                        <span>${c.name}</span>
+                        <span class="text-slate-400 font-semibold">@${c.username}</span>
+                        <span class="${c.role==='owner'?'bg-amber-400 text-slate-950':c.role==='admin'?'bg-slate-900 text-amber-300':'bg-sky-100 text-sky-800'} text-[9px] px-1.5 py-0.5 rounded font-black uppercase">${c.role}</span>
+                        ${c.suspended ? '<span class="bg-rose-600 text-white text-[9px] px-1.5 py-0.5 rounded font-black">NONAKTIF</span>' : '<span class="bg-emerald-100 text-emerald-800 text-[9px] px-1.5 py-0.5 rounded font-black">AKTIF</span>'}
+                      </div>
+                      <div class="text-[11px] text-slate-500">${c.email} • WA: ${c.whatsapp || '-'}</div>
+                      <div class="text-[11px] font-bold text-slate-700 mt-0.5">🪙 ${c.coins} Coin • 📅 Streak: ${c.streakDay || 0}/7 • 📦 ${ordCount} Order • 🔑 Sandi: <code class="bg-slate-100 px-1 rounded">${c.password}</code></div>
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap gap-1.5 pt-1 border-t">
+                    <button data-action="edit-user" data-id="${c.id}" class="bg-sky-500 text-slate-950 font-black px-2.5 py-1 rounded-lg">✏️ Edit & Reset Sandi</button>
+                    <button data-action="quick-reset-pass" data-id="${c.id}" class="bg-amber-100 text-amber-950 font-extrabold px-2.5 py-1 rounded-lg">🔑 Reset ke 123456</button>
+                    <button data-action="toggle-suspend-user" data-id="${c.id}" class="bg-slate-100 text-slate-800 font-bold px-2.5 py-1 rounded-lg">${c.suspended ? '✅ Buka Blokir' : '🚫 Blokir'}</button>
+                    <button data-action="del-user" data-id="${c.id}" class="bg-rose-100 text-rose-700 font-bold px-2.5 py-1 rounded-lg ml-auto">🗑️ Hapus</button>
+                  </div>
+                </div>`;
+              }).join('');
+            })()}
+          </div>
+        </div>
+      ` : ui.adminTab === 'promos' ? `
+        <div class="space-y-3 text-xs">
+          <div class="grid grid-cols-3 gap-2">
+            <input id="admPromoCode" type="text" placeholder="KODE" class="border rounded-lg px-2.5 py-2 uppercase" />
+            <select id="admPromoType" class="border rounded-lg px-2 py-2"><option value="percent">Persen (%)</option><option value="fixed">Nominal (Rp)</option></select>
+            <input id="admPromoVal" type="number" placeholder="Nilai" class="border rounded-lg px-2.5 py-2" />
+          </div>
+          <button data-action="add-promo" class="w-full bg-slate-900 text-amber-400 font-black py-2 rounded-xl">+ Buat Kode Promo</button>
+          <div class="space-y-1.5">
+            ${state.promos.map(pr => `<div class="flex justify-between border rounded-xl p-2"><b>${pr.code}</b> (${pr.type==='percent'?pr.value+'%':fmtRp(pr.value)}) <button data-action="del-promo" data-id="${pr.id}" class="text-rose-600 font-bold">Hapus</button></div>`).join('')}
+          </div>
+        </div>
+      ` : ui.adminTab === 'coin_gacha' ? `
+        <div class="space-y-3 text-xs max-h-[70vh] overflow-y-auto pr-0.5">
+          <!-- Pengaturan Kurs Coin & Absen 7 Hari -->
+          <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl space-y-2">
+            <div class="font-black text-amber-950">📅 Pengaturan Absen 7 Hari (Day 1 – Day 7) & Biaya Spin</div>
+            <div class="grid grid-cols-3 gap-2">
+              <div><label class="font-bold text-[10px]">1 Coin = Rp</label><input id="admCoinRate" type="number" value="${s.coinRate}" class="w-full border rounded-lg px-2 py-1.5 bg-white" /></div>
+              <div><label class="font-bold text-[10px]">Spin Reguler</label><input id="admSpinReg" type="number" value="${s.gachaCostRegular}" class="w-full border rounded-lg px-2 py-1.5 bg-white" /></div>
+              <div><label class="font-bold text-[10px]">Spin Sultan</label><input id="admSpinSul" type="number" value="${s.gachaCostSultan}" class="w-full border rounded-lg px-2 py-1.5 bg-white" /></div>
+            </div>
+            <div class="grid grid-cols-4 gap-1.5 pt-1">
+              ${(s.streakRewards || [20,30,40,50,75,100,200]).map((v, i) => `
+                <div><label class="text-[10px] font-bold">Day ${i+1}</label><input id="admDay${i}" type="number" value="${v}" class="w-full border rounded-lg px-2 py-1 bg-white" /></div>
+              `).join('')}
+            </div>
+            <button data-action="save-coin-settings" class="w-full bg-slate-900 text-amber-400 font-black py-2 rounded-xl">💾 Simpan Coin & Absen 7 Hari</button>
+          </div>
+
+          <!-- Pengaturan Slot Hadiah Gacha & Persentase Peluang (%) -->
+          ${(() => {
+            const totalPct = (state.gachaPrizes || []).reduce((sum, g) => sum + Number(g.weight || 0), 0);
+            return `
+            <div class="bg-indigo-50/80 border border-indigo-200 p-3 rounded-xl space-y-2">
+              <div class="flex items-center justify-between flex-wrap gap-1">
+                <div>
+                  <div class="font-black text-indigo-950">🎡 Pengaturan Slot Hadiah Gacha & Peluang (%)</div>
+                  <div class="text-[10px] text-slate-600">Atur jumlah slot roda gacha, jenis hadiah, dan persentase peluang dapat.</div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded-full font-black text-[10px] ${totalPct === 100 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-200 text-amber-950'}">Total: ${totalPct}%</span>
+                  <button data-action="add-gacha-slot" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black text-[10px] px-2.5 py-1 rounded-lg">+ Slot Hadiah</button>
+                  <button data-action="add-zonk-slot" class="bg-slate-700 hover:bg-slate-600 text-white font-black text-[10px] px-2.5 py-1 rounded-lg">+ Slot Zonk</button>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                ${(state.gachaPrizes || []).map((gp, idx) => `
+                  <div class="bg-white border border-indigo-100 rounded-xl p-2 space-y-1.5">
+                    <div class="flex items-center justify-between gap-1.5">
+                      <span class="font-black text-[10px] text-indigo-900 bg-indigo-100 px-2 py-0.5 rounded">Slot #${idx + 1}</span>
+                      <div class="flex items-center gap-1">
+                        <label class="text-[10px] font-bold text-slate-500">Warna:</label>
+                        <input type="color" id="gpColor${idx}" value="${gp.color || '#38bdf8'}" class="w-6 h-5 rounded cursor-pointer border-0" />
+                        ${state.gachaPrizes.length > 2 ? `<button data-action="del-gacha-slot" data-val="${idx}" class="text-rose-600 font-black text-[11px] px-1.5" title="Hapus Slot">🗑️</button>` : ''}
+                      </div>
+                    </div>
+                    <div class="grid grid-cols-12 gap-1.5">
+                      <input id="gpIcon${idx}" type="text" value="${gp.icon || '🎁'}" placeholder="Ikon" class="col-span-2 border rounded-lg px-1.5 py-1.5 text-center" />
+                      <input id="gpLabel${idx}" type="text" value="${(gp.label || '').replace(/"/g, '&quot;')}" placeholder="Nama Hadiah Slot" class="col-span-10 border rounded-lg px-2 py-1.5 font-bold" />
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                      <div>
+                        <label class="text-[9px] font-bold text-slate-500 block">Tipe Hadiah</label>
+                        <select id="gpType${idx}" class="w-full border rounded-lg px-1.5 py-1 font-bold bg-slate-50">
+                          <option value="coin" ${gp.type==='coin'?'selected':''}>🪙 Coin</option>
+                          <option value="voucher" ${gp.type==='voucher'?'selected':''}>🎟️ Voucher %</option>
+                          <option value="topup" ${gp.type==='topup'?'selected':''}>💎 Top Up</option>
+                          <option value="akun" ${gp.type==='akun'?'selected':''}>👑 Akun Game</option>
+                          <option value="zonk" ${gp.type==='zonk'?'selected':''}>😅 Zonk</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="text-[9px] font-bold text-slate-500 block">Nilai (Coin/%/Rp)</label>
+                        <input id="gpVal${idx}" type="number" value="${gp.value || 0}" class="w-full border rounded-lg px-2 py-1" />
+                      </div>
+                      <div>
+                        <label class="text-[9px] font-black text-sky-700 block">Peluang (%)</label>
+                        <input id="gpWeight${idx}" type="number" min="0" max="100" step="0.1" value="${gp.weight ?? 10}" class="w-full border border-sky-300 bg-sky-50/50 rounded-lg px-2 py-1 font-black text-sky-900" />
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+
+              <button data-action="save-gacha-slots" class="w-full bg-indigo-950 hover:bg-indigo-900 text-amber-400 font-black py-2.5 rounded-xl">💾 Simpan Semua Slot & Persentase Gacha</button>
+            </div>
+            `;
+          })()}
+
+          <div class="space-y-1.5">
+            <div class="font-black">Kelola Saldo Coin Konsumen:</div>
+            ${state.users.filter(x => x.role === 'customer').map(c => `<div class="flex justify-between items-center border rounded-xl p-2 bg-white">
+              <span><b>${c.name}</b> (@${c.username}) — 🪙 ${c.coins}</span>
+              <div class="flex gap-1">
+                <button data-action="adj-coin" data-id="${c.id}" data-val="100" class="bg-emerald-100 text-emerald-900 font-bold px-2 py-1 rounded">+100</button>
+                <button data-action="adj-coin" data-id="${c.id}" data-val="-50" class="bg-rose-100 text-rose-900 font-bold px-2 py-1 rounded">-50</button>
+              </div>
+            </div>`).join('')}
+          </div>
+        </div>
+      ` : `
+        <div class="space-y-2.5 text-xs">
+          <div><label class="font-bold">Nama Toko</label><input id="admStoreName" type="text" value="${s.storeName}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+          <div><label class="font-bold">Tagline Toko</label><input id="admStoreTag" type="text" value="${s.tagline}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+          <div><label class="font-bold">Deskripsi Footer Toko</label><textarea id="admFooterDesc" rows="2" class="w-full border rounded-lg px-2.5 py-2">${s.footerDesc || ''}</textarea></div>
+          <div class="grid grid-cols-2 gap-2">
+            <div><label class="font-bold">No. WhatsApp CS (628xxx)</label><input id="admCsWa" type="text" value="${s.csWhatsapp || ''}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+            <div><label class="font-bold">Link TikTok</label><input id="admSocTik" type="url" value="${s.socialTiktok || ''}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div><label class="font-bold">Link Instagram</label><input id="admSocIns" type="url" value="${s.socialInstagram || ''}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+            <div><label class="font-bold">Link YouTube</label><input id="admSocYt" type="url" value="${s.socialYoutube || ''}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+          </div>
+          <div><label class="font-bold">Tautan All Payment Gateway</label><input id="admAllPay" type="url" value="${s.allPaymentLink}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+          <div><label class="font-bold">Tautan QRIS Instan</label><input id="admQrisLink" type="url" value="${s.qrisPaymentLink}" class="w-full border rounded-lg px-2.5 py-2" /></div>
+          <div><label class="font-bold">Upload Logo Custom (Opsional)</label><input id="admLogoFile" type="file" accept="image/*" class="w-full" /></div>
+          <div><label class="font-bold">Upload Gambar Hero Banner (Opsional)</label><input id="admHeroFile" type="file" accept="image/*" class="w-full" /></div>
+          <button data-action="save-web-settings" class="w-full bg-slate-900 text-amber-400 font-black py-2.5 rounded-xl">Simpan Tampilan & Tautan Pembayaran</button>
+        </div>
+      `}
+    `);
+  }
+
+  function compressImage(file, maxW = 540) {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          const scale = Math.min(1, maxW / img.width);
+          const cv = document.createElement('canvas');
+          cv.width = img.width * scale;
+          cv.height = img.height * scale;
+          cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+          resolve(cv.toDataURL('image/jpeg', 0.78));
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  document.addEventListener('input', e => {
+    if (e.target.id === 'searchInput') { ui.page = 1; renderCatalog(); }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      if (e.target.id === 'gateUser' || e.target.id === 'gatePass') {
+        document.querySelector('[data-action="gate-do-login"]')?.click();
+      } else if (e.target.id === 'custChatInput') {
+        document.querySelector('[data-action="send-cust-chat"]')?.click();
+      } else if (e.target.id === 'adminChatInput') {
+        document.querySelector('[data-action="send-admin-chat"]')?.click();
+      } else if (e.target.id === 'globalChatInput') {
+        document.querySelector('[data-action="send-global-chat"]')?.click();
+      }
+    }
+  });
+
+  document.addEventListener('change', e => {
+    const act = e.target.dataset.action;
+    if (act === 'toggle-coin') {
+      ui.useCoinCheckout = e.target.checked;
+      openCartModal();
+    } else if (act === 'upd-order-status') {
+      const ord = state.orders.find(x => x.id === e.target.dataset.id);
+      if (ord) {
+        ord.status = e.target.value;
+        if (ord.status === 'DONE') {
+          const autoCreds = ord.deliveryNote || `Status: SELESAI\nTujuan: ${ord.items.map(i => i.target).join(', ')}`;
+          ord.deliveryNote = autoCreds;
+          pushUserInbox(
+            ord.userId,
+            `✅ Pesanan #${ord.code} Selesai & Terkirim!`,
+            `Item "${ord.items.map(i => i.title).join(', ')}" telah selesai diproses oleh Admin. Simpan bukti transaksi Anda.`,
+            autoCreds,
+            ord.id
+          );
+        }
+        saveState();
+        renderAll();
+        alert('Status order diperbarui!');
+      }
+    }
+  });
+
+  document.addEventListener('click', async e => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    const act = btn.dataset.action;
+    const val = btn.dataset.val;
+    const id = btn.dataset.id;
+
+    if (act === 'gate-tab') {
+      const isLogin = val === 'login';
+      document.getElementById('gateFormLogin').classList.toggle('hidden', !isLogin);
+      document.getElementById('gateFormReg').classList.toggle('hidden', isLogin);
+      document.getElementById('gateTabLogin').className = isLogin
+        ? 'py-2.5 rounded-xl bg-white text-slate-900 shadow-sm transition'
+        : 'py-2.5 rounded-xl text-slate-500 hover:text-slate-800 transition';
+      document.getElementById('gateTabReg').className = !isLogin
+        ? 'py-2.5 rounded-xl bg-white text-slate-900 shadow-sm transition'
+        : 'py-2.5 rounded-xl text-slate-500 hover:text-slate-800 transition';
+    } else if (act === 'toggle-gate-pass') {
+      const inp = document.getElementById('gatePass');
+      inp.type = inp.type === 'password' ? 'text' : 'password';
+    } else if (act === 'gate-do-login') {
+      const iden = document.getElementById('gateUser').value.trim();
+      const pw = document.getElementById('gatePass').value;
+      const found = state.users.find(x => (x.username.toLowerCase() === iden.toLowerCase() || x.email.toLowerCase() === iden.toLowerCase()) && x.password === pw);
+      if (!found) return alert('Username/Email atau Password salah!');
+      if (found.suspended) return alert('Akun Anda sedang dinonaktifkan sementara oleh Admin. Hubungi CS Rifstore.');
+      state.currentUserId = found.id;
+      saveState();
+      renderAll();
+    } else if (act === 'gate-do-register') {
+      const name = document.getElementById('gateRegName').value.trim();
+      const username = document.getElementById('gateRegUser').value.trim();
+      const email = document.getElementById('gateRegEmail').value.trim();
+      const whatsapp = document.getElementById('gateRegWa').value.trim();
+      const pass = document.getElementById('gateRegPass').value;
+      const pass2 = document.getElementById('gateRegPass2').value;
+      if (!name || !username || !email || !pass) return alert('Lengkapi semua kolom pendaftaran!');
+      if (pass !== pass2) return alert('Konfirmasi password tidak cocok!');
+      if (state.users.some(x => x.username.toLowerCase() === username.toLowerCase() || x.email.toLowerCase() === email.toLowerCase())) {
+        return alert('Username atau Email sudah terdaftar!');
+      }
+      const newUser = {
+        id: 'u-' + Date.now(), name, username, email, whatsapp, password: pass,
+        role: 'customer', coins: 100, streakDay: 0, lastCheckinDate: '', cart: [], prizes: [],
+        inbox: [{
+          id: 'msg-' + Date.now(),
+          title: '🎉 Selamat Bergabung di RIFSTORE!',
+          body: 'Terima kasih telah mendaftar. Bonus +100 Coin telah aktif di akun Anda.',
+          credentials: '',
+          orderId: '',
+          date: getNowFormatted(),
+          read: false
+        }],
+        coinLogs: [{ text: 'Bonus Daftar Akun Baru', delta: 100, date: getTodayStr() }]
+      };
+      state.users.push(newUser);
+      state.currentUserId = newUser.id;
+      saveState();
+      renderAll();
+      alert('🎉 Akun berhasil dibuat! Selamat datang di RIFSTORE (+100 Coin).');
+    } else if (act === 'logout') {
+      state.currentUserId = null;
+      closeModal();
+      saveState();
+      renderAll();
+    } else if (act === 'open-sidebar') {
+      document.getElementById('sidebarOverlay').classList.remove('hidden');
+      document.getElementById('sidebarDrawer').classList.remove('-translate-x-full');
+    } else if (act === 'close-sidebar') {
+      document.getElementById('sidebarOverlay').classList.add('hidden');
+      document.getElementById('sidebarDrawer').classList.add('-translate-x-full');
+    } else if (act === 'nav-cat' || act === 'set-cat') {
+      ui.category = val; ui.page = 1;
+      document.querySelectorAll('#categoryTabs button').forEach(b => b.classList.toggle('tab-active', b.dataset.val === val));
+      document.getElementById('sidebarOverlay').classList.add('hidden');
+      document.getElementById('sidebarDrawer').classList.add('-translate-x-full');
+      renderCatalog();
+    } else if (act === 'reset-home') {
+      ui.category = 'all'; ui.page = 1; renderAll();
+    } else if (act === 'set-page') {
+      ui.page = Number(val); renderCatalog();
+    } else if (act === 'copy-promo') {
+      navigator.clipboard?.writeText(val);
+      ui.appliedPromo = val;
+      alert(`Kode promo ${val} disalin & siap dipakai!`);
+    } else if (act === 'copy-text') {
+      const txt = decodeURIComponent(val || '');
+      navigator.clipboard?.writeText(txt);
+      alert('Data item / akun berhasil disalin!');
+    } else if (act === 'open-product') {
+      openProductModal(id);
+    } else if (act === 'zoom-img') {
+      document.getElementById('lightboxImg').src = val;
+      const lb = document.getElementById('lightboxModal');
+      lb.classList.remove('hidden'); lb.classList.add('flex');
+    } else if (act === 'close-lightbox') {
+      const lb = document.getElementById('lightboxModal');
+      lb.classList.add('hidden'); lb.classList.remove('flex');
+    } else if (act === 'close-modal') {
+      closeModal();
+    } else if (act === 'add-to-cart') {
+      const p = state.products.find(x => x.id === id);
+      const target = document.getElementById('prodTargetField').value.trim();
+      if (!target) return alert('Harap isi ID Game / Nomor HP / Email tujuan!');
+      let title = p.title, price = p.price;
+      if (p.variants && p.variants.length > 0) {
+        const idx = Number(document.querySelector('input[name="prodVarRadio"]:checked')?.value || 0);
+        title = `${p.title} (${p.variants[idx].name})`;
+        price = p.variants[idx].price;
+      }
+      const cart = getActiveCart();
+      cart.push({ productId: p.id, title, price, qty: 1, target });
+      setActiveCart(cart);
+      updateCartBadge();
+      openCartModal();
+    } else if (act === 'open-cart') {
+      openCartModal();
+    } else if (act === 'remove-cart') {
+      const cart = getActiveCart();
+      cart.splice(Number(val), 1);
+      setActiveCart(cart);
+      updateCartBadge();
+      openCartModal();
+    } else if (act === 'apply-promo') {
+      ui.appliedPromo = document.getElementById('cartPromoCode').value.trim().toUpperCase();
+      openCartModal();
+    } else if (act === 'process-checkout') {
+      const u = getUser();
+      if (!u) return;
+      const cart = getActiveCart();
+      if (!cart.length) return;
+      const s = state.settings;
+      const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      let promoDisc = 0;
+      const pr = state.promos.find(x => x.code === ui.appliedPromo);
+      if (pr && subtotal >= pr.minSpend) promoDisc = pr.type === 'percent' ? Math.round(subtotal * pr.value / 100) : pr.value;
+      const afterPromo = Math.max(0, subtotal - promoDisc);
+      const coinDisc = ui.useCoinCheckout ? Math.min(afterPromo, u.coins * s.coinRate) : 0;
+      const coinUsed = coinDisc > 0 ? Math.ceil(coinDisc / s.coinRate) : 0;
+      const total = Math.max(0, afterPromo - coinDisc);
+      const channel = document.getElementById('checkoutChannel').value;
+
+      if (coinUsed > 0) {
+        u.coins = Math.max(0, u.coins - coinUsed);
+        u.coinLogs.unshift({ text: 'Bayar Belanja Pakai Coin', delta: -coinUsed, date: getTodayStr() });
+      }
+
+      const isInstantPaid = total === 0;
+      const autoNote = isInstantPaid
+        ? `REF-COIN-${Math.floor(100000 + Math.random() * 900000)} | Tujuan: ${cart.map(i => i.target).join(', ')}`
+        : '';
+
+      const order = {
+        id: 'ord-' + Date.now(),
+        code: 'RIF-' + Math.floor(100000 + Math.random() * 900000),
+        userId: u.id,
+        userName: u.name,
+        items: [...cart],
+        subtotal,
+        promoDisc,
+        coinDisc,
+        coinUsed,
+        total,
+        channel: isInstantPaid ? 'FULL_COIN' : channel,
+        status: isInstantPaid ? 'DONE' : 'PENDING',
+        deliveryNote: autoNote,
+        createdAt: getNowFormatted()
+      };
+      state.orders.unshift(order);
+      setActiveCart([]);
+      ui.useCoinCheckout = false;
+
+      if (isInstantPaid) {
+        pushUserInbox(
+          u.id,
+          `✅ Pembayaran Coin Berhasil — Order #${order.code}`,
+          `Pesanan "${order.items.map(i => i.title).join(', ')}" lunas menggunakan ${coinUsed} Coin dan telah dikirim.`,
+          autoNote,
+          order.id
+        );
+      }
+
+      saveState();
+      renderAll();
+
+      if (isInstantPaid) {
+        alert(`🎉 Pembayaran Lunas 100% menggunakan ${coinUsed} Coin! Cek Inbox & Bukti Transaksi Anda.`);
+        openReceiptModal(order.id);
+      } else {
+        openPaymentScreen(order);
+      }
+    } else if (act === 'reopen-pay') {
+      const ord = state.orders.find(x => x.id === id);
+      if (ord) openPaymentScreen(ord);
+    } else if (act === 'download-qris') {
+      const cv = document.getElementById('qrisCanvas');
+      if (cv) {
+        const a = document.createElement('a');
+        a.download = 'QRIS-RIFSTORE.png';
+        a.href = cv.toDataURL('image/png');
+        a.click();
+      }
+    } else if (act === 'confirm-order-paid') {
+      const ord = state.orders.find(x => x.id === id);
+      const u = getUser();
+      if (ord && ord.status === 'PENDING') {
+        ord.status = 'PAID';
+        const snCode = `SN-${Date.now().toString().slice(-6)} | Tujuan: ${ord.items.map(i => i.target).join(', ')}`;
+        ord.deliveryNote = snCode;
+        if (u) {
+          const cb = Math.max(10, Math.floor(ord.total * 0.05 / state.settings.coinRate));
+          u.coins += cb;
+          u.coinLogs.unshift({ text: `Cashback 5% Order #${ord.code}`, delta: cb, date: getTodayStr() });
+          pushUserInbox(
+            u.id,
+            `🧾 Pembayaran Diterima & Item Diproses (#${ord.code})`,
+            `Terima kasih! Pembayaran sebesar ${fmtRp(ord.total)} terkonfirmasi (+${cb} Cashback Coin). Untuk produk Akun Game, data lengkap akun akan dikirimkan Admin ke Inbox ini.`,
+            snCode,
+            ord.id
+          );
+        }
+        saveState();
+        renderAll();
+        alert('✅ Pembayaran terkonfirmasi! Bukti transaksi & pesan Inbox telah dikirim.');
+        openReceiptModal(ord.id);
+      }
+    } else if (act === 'scroll-top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (act === 'open-cs') {
+      openCsModal();
+    } else if (act === 'quick-chat-msg') {
+      const inp = document.getElementById('custChatInput');
+      if (inp) { inp.value = val || ''; inp.focus(); }
+    } else if (act === 'send-cust-chat') {
+      const u = getUser();
+      const inp = document.getElementById('custChatInput');
+      const txt = inp ? inp.value.trim() : '';
+      if (!u || !txt) return;
+      const thread = getOrCreateChatThread(u);
+      thread.messages.push({
+        sender: 'customer',
+        text: txt,
+        time: getNowFormatted(),
+        readByCustomer: true,
+        readByAdmin: false
+      });
+      saveState();
+      renderAll();
+      openCsModal();
+    } else if (act === 'select-chat-user') {
+      ui.activeChatUserId = id;
+      openAdminModal();
+      const ab = document.getElementById('adminChatBox');
+      if (ab) ab.scrollTop = ab.scrollHeight;
+    } else if (act === 'send-admin-chat') {
+      const targetCust = state.users.find(x => x.id === id);
+      const inp = document.getElementById('adminChatInput');
+      const txt = inp ? inp.value.trim() : '';
+      if (!targetCust || !txt) return;
+      const thread = getOrCreateChatThread(targetCust);
+      thread.messages.push({
+        sender: 'admin',
+        text: txt,
+        time: getNowFormatted(),
+        readByCustomer: false,
+        readByAdmin: true
+      });
+      saveState();
+      renderAll();
+      openAdminModal();
+      const ab = document.getElementById('adminChatBox');
+      if (ab) ab.scrollTop = ab.scrollHeight;
+    } else if (act === 'clear-chat-thread') {
+      if (!confirm('Hapus riwayat obrolan dengan konsumen ini?')) return;
+      state.chats = state.chats.filter(x => x.userId !== id);
+      saveState();
+      renderAll();
+      openAdminModal();
+    } else if (act === 'open-terms') {
+      openTermsModal();
+    } else if (act === 'open-track-order') {
+      document.getElementById('sidebarOverlay').classList.add('hidden');
+      document.getElementById('sidebarDrawer').classList.add('-translate-x-full');
+      openTrackOrderModal();
+    } else if (act === 'do-track-order') {
+      const code = document.getElementById('trackInvoiceInput').value.trim().toUpperCase().replace(/^#/, '');
+      const resEl = document.getElementById('trackOrderResult');
+      const ord = state.orders.find(x => x.code.toUpperCase() === code);
+      if (!ord) {
+        resEl.innerHTML = `<div class="bg-rose-50 border border-rose-200 text-rose-700 p-3 rounded-xl font-bold text-center">Nomor Invoice #${code || '-'} tidak ditemukan.</div>`;
+      } else {
+        resEl.innerHTML = `<div class="border rounded-xl p-3 bg-sky-50/70 space-y-1.5">
+          <div class="flex justify-between font-black"><span>#${ord.code}</span><span class="text-emerald-700">${ord.status}</span></div>
+          <div>Item: <b>${ord.items.map(i => i.title).join(', ')}</b></div>
+          <div>Total: <b>${fmtRp(ord.total)}</b> (${ord.channel})</div>
+          <button data-action="open-receipt" data-id="${ord.id}" class="mt-1 w-full bg-slate-900 text-amber-400 font-black py-2 rounded-lg">🧾 Lihat Bukti Transaksi</button>
+        </div>`;
+      }
+    } else if (act === 'quick-product') {
+      const kw = (val || '').toLowerCase();
+      const foundP = state.products.find(p => p.title.toLowerCase().includes(kw) || (p.game || '').toLowerCase().includes(kw));
+      if (foundP) openProductModal(foundP.id);
+      else { ui.category = 'all'; renderCatalog(); window.scrollTo({ top: 300, behavior: 'smooth' }); }
+    } else if (act === 'open-global-chat') {
+      document.getElementById('sidebarOverlay').classList.add('hidden');
+      document.getElementById('sidebarDrawer').classList.add('-translate-x-full');
+      openGlobalChatModal();
+    } else if (act === 'send-global-chat') {
+      const u = getUser();
+      const inp = document.getElementById('globalChatInput');
+      const txt = inp ? inp.value.trim() : '';
+      if (!u || !txt) return;
+      if (!Array.isArray(state.globalChat)) state.globalChat = [];
+      state.globalChat.push({
+        id: 'gc-' + Date.now(),
+        userId: u.id,
+        userName: u.name,
+        username: u.username,
+        role: u.role,
+        text: txt,
+        time: getNowFormatted()
+      });
+      saveState();
+      renderAll();
+      openGlobalChatModal();
+    } else if (act === 'open-inbox') {
+      openCommHubModal('inbox');
+    } else if (act === 'comm-tab') {
+      ui.commTab = val;
+      openCommHubModal(val);
+    } else if (act === 'read-msg') {
+      const u = getUser();
+      if (u && u.inbox && u.inbox[Number(val)]) {
+        u.inbox[Number(val)].read = true;
+        saveState();
+        renderAll();
+        openInboxModal();
+      }
+    } else if (act === 'mark-all-read') {
+      const u = getUser();
+      if (u && u.inbox) {
+        u.inbox.forEach(m => m.read = true);
+        saveState();
+        renderAll();
+        openInboxModal();
+      }
+    } else if (act === 'open-receipt') {
+      openReceiptModal(id);
+    } else if (act === 'download-receipt') {
+      downloadReceiptPNG(id);
+    } else if (act === 'open-gacha') {
+      openGachaModal();
+    } else if (act === 'gacha-tab') {
+      ui.gachaTab = val; openGachaModal();
+    } else if (act === 'wheel-mode') {
+      ui.wheelMode = val; openGachaModal();
+    } else if (act === 'sim-next-day') {
+      ui.simDayOffset += 1; openGachaModal();
+    } else if (act === 'claim-checkin') {
+      const u = getUser();
+      if (!u) return;
+      const today = getTodayStr();
+      if (u.lastCheckinDate === today) return;
+      const nextDay = (u.streakDay || 0) >= 7 ? 1 : (u.streakDay || 0) + 1;
+      const rewards = state.settings.streakRewards || [20,30,40,50,75,100,200];
+      const earned = Number(rewards[nextDay - 1] || 20);
+      u.streakDay = nextDay;
+      u.lastCheckinDate = today;
+      u.coins += earned;
+      u.coinLogs.unshift({ text: `Absen Harian Day ${nextDay}`, delta: earned, date: today });
+      saveState(); renderAll(); openGachaModal();
+      alert(`🎉 Absen Day ${nextDay} berhasil! +${earned} Coin ditambahkan.`);
+    } else if (act === 'spin-now') {
+      if (ui.isSpinning) return;
+      const u = getUser();
+      if (!u) return;
+      const prizes = state.gachaPrizes || [];
+      if (!prizes.length) return alert('Slot hadiah gacha belum dikonfigurasi Admin.');
+      const cost = ui.wheelMode === 'sultan' ? Number(state.settings.gachaCostSultan) : Number(state.settings.gachaCostRegular);
+      if (u.coins < cost) return alert(`Saldo Coin tidak cukup (Butuh ${cost} Coin)`);
+      u.coins -= cost;
+      u.coinLogs.unshift({ text: `Spin Wheel (${ui.wheelMode})`, delta: -cost, date: getTodayStr() });
+      saveState(); renderAll();
+
+      // Pilih pemenang berdasarkan persentase peluang (weighted random)
+      const odds = getGachaOddsList(ui.wheelMode);
+      const totalPct = odds.reduce((s, x) => s + x.pct, 0);
+      let rnd = Math.random() * totalPct;
+      let winIdx = 0;
+      for (let i = 0; i < odds.length; i++) {
+        rnd -= odds[i].pct;
+        if (rnd <= 0) { winIdx = i; break; }
+      }
+
+      ui.isSpinning = true;
+      const arc = (2 * Math.PI) / prizes.length;
+      const targetAngle = (2 * Math.PI * 6) - (winIdx * arc + arc / 2);
+      const startAngle = ui.wheelAngle;
+      const startTime = performance.now();
+      const duration = 3600;
+
+      function animateWheel(now) {
+        const t = Math.min(1, (now - startTime) / duration);
+        const ease = 1 - Math.pow(1 - t, 3);
+        ui.wheelAngle = startAngle + (targetAngle - startAngle) * ease;
+        drawSpinWheel();
+        if (t < 1) requestAnimationFrame(animateWheel);
+        else {
+          ui.isSpinning = false;
+          const won = prizes[winIdx];
+          if (won.type === 'zonk') {
+            saveState(); renderAll(); openGachaModal();
+            alert(`😅 ${won.icon} ${won.label}! Belum beruntung kali ini, silakan coba spin lagi.`);
+            return;
+          }
+          if (won.type === 'coin') {
+            u.coins += Number(won.value || 0);
+            u.coinLogs.unshift({ text: `Menang Spin: ${won.label}`, delta: Number(won.value || 0), date: getTodayStr() });
+          } else {
+            const code = won.type === 'voucher' ? 'GACHA-' + Math.floor(1000 + Math.random() * 9000) : '';
+            if (code) state.promos.push({ id: 'pr-' + Date.now(), code, type: 'percent', value: Number(won.value || 10), minSpend: 0, scope: 'all' });
+            u.prizes = u.prizes || [];
+            u.prizes.unshift({ label: won.label, type: won.type, code, claimed: false });
+          }
+          saveState(); renderAll(); openGachaModal();
+          alert(`🎊 SELAMAT! Anda memenangkan: ${won.icon} ${won.label}`);
+        }
+      }
+      requestAnimationFrame(animateWheel);
+    } else if (act === 'claim-bag-prize') {
+      const u = getUser();
+      const pz = u?.prizes?.[Number(val)];
+      if (!pz) return;
+      pz.claimed = true;
+      if (pz.code) {
+        ui.appliedPromo = pz.code;
+        saveState(); openCartModal();
+      } else {
+        const ordId = 'ord-' + Date.now();
+        const code = 'HADIAH-' + Math.floor(1000 + Math.random()*9000);
+        const note = `Klaim Hadiah Spin Wheel | Tujuan: ${u.email}`;
+        state.orders.unshift({ id: ordId, code, userId: u.id, userName: u.name, items: [{ title: pz.label, price: 0, qty: 1, target: u.email }], subtotal: 0, promoDisc: 0, coinDisc: 0, total: 0, channel: 'HADIAH_GACHA', status: 'DONE', deliveryNote: note, createdAt: getNowFormatted() });
+        pushUserInbox(u.id, `🎁 Hadiah Spin Wheel Diklaim (#${code})`, `Hadiah "${pz.label}" berhasil diklaim dan sedang diproses ke akun Anda.`, note, ordId);
+        saveState(); renderAll(); openReceiptModal(ordId);
+      }
+    } else if (act === 'open-orders') {
+      openOrdersModal();
+    } else if (act === 'open-admin') {
+      openAdminModal();
+    } else if (act === 'admin-tab') {
+      ui.adminTab = val; ui.editUserId = null; ui.deliverOrderId = null; ui.editProdId = null; ui.showNewUserForm = false; ui.tempProdImages = []; ui.tempProdVariants = []; openAdminModal();
+    } else if (act === 'open-deliver') {
+      ui.deliverOrderId = id;
+      openAdminModal();
+    } else if (act === 'cancel-deliver') {
+      ui.deliverOrderId = null;
+      openAdminModal();
+    } else if (act === 'send-order-inbox') {
+      const ord = state.orders.find(x => x.id === id);
+      if (!ord) return;
+      const creds = document.getElementById('admDeliveryCreds').value.trim();
+      if (!creds) return alert('Isi data akun / kode voucher / keterangan pengiriman terlebih dahulu!');
+      ord.status = 'DONE';
+      ord.deliveryNote = creds;
+      pushUserInbox(
+        ord.userId,
+        `🎮 Item / Akun Game Terkirim — Order #${ord.code}`,
+        `Pesanan "${ord.items.map(i => i.title).join(', ')}" telah dikirim oleh Admin. Silakan cek detail akun/item di bawah dan simpan bukti transaksi.`,
+        creds,
+        ord.id
+      );
+      ui.deliverOrderId = null;
+      saveState();
+      renderAll();
+      openAdminModal();
+      alert(`✅ Data item/akun berhasil dikirim ke Inbox ${ord.userName} & status order menjadi DONE!`);
+    } else if (act === 'filter-users') {
+      ui.userSearch = document.getElementById('admUserSearch').value.trim();
+      openAdminModal();
+    } else if (act === 'toggle-new-user-form') {
+      ui.showNewUserForm = !ui.showNewUserForm;
+      openAdminModal();
+    } else if (act === 'save-new-user-by-admin') {
+      const name = document.getElementById('admNewName').value.trim();
+      const username = document.getElementById('admNewUser').value.trim();
+      const email = document.getElementById('admNewEmail').value.trim();
+      const whatsapp = document.getElementById('admNewWa').value.trim();
+      const password = document.getElementById('admNewPass').value;
+      const coins = Math.max(0, Number(document.getElementById('admNewCoins').value || 100));
+      const role = document.getElementById('admNewRole').value;
+
+      if (!name || !username || !email || !password) return alert('Nama, Username, Email, dan Password wajib diisi!');
+      if (state.users.some(x => x.username.toLowerCase() === username.toLowerCase() || x.email.toLowerCase() === email.toLowerCase())) {
+        return alert('Username atau Email sudah terdaftar di sistem!');
+      }
+
+      const newU = {
+        id: 'u-' + Date.now(),
+        name,
+        username,
+        email,
+        whatsapp,
+        password,
+        role,
+        coins,
+        streakDay: 0,
+        lastCheckinDate: '',
+        cart: [],
+        prizes: [],
+        inbox: [{
+          id: 'msg-' + Date.now(),
+          title: '🎉 Akun Dibuat oleh Sistem / Owner',
+          body: `Akun Anda berhasil dibuat dengan hak akses level ${role.toUpperCase()}.`,
+          credentials: '',
+          orderId: '',
+          date: getNowFormatted(),
+          read: false
+        }],
+        coinLogs: [{ text: 'Saldo Awal Akun', delta: coins, date: getTodayStr() }]
+      };
+      state.users.push(newU);
+      ui.showNewUserForm = false;
+      saveState();
+      renderAll();
+      openAdminModal();
+      alert(`✅ Berhasil membuat akun ${role.toUpperCase()} baru (${name} / @${username})!`);
+    } else if (act === 'edit-user') {
+      ui.editUserId = id;
+      openAdminModal();
+    } else if (act === 'cancel-edit-user') {
+      ui.editUserId = null;
+      openAdminModal();
+    } else if (act === 'gen-rand-pass') {
+      const rnd = 'RIF' + Math.floor(1000 + Math.random() * 9000);
+      const inp = document.getElementById('admEditUPass');
+      if (inp) inp.value = rnd;
+    } else if (act === 'save-edit-user') {
+      const targetU = state.users.find(x => x.id === id);
+      if (!targetU) return;
+      const newName = document.getElementById('admEditUName').value.trim();
+      const newUser = document.getElementById('admEditUUser').value.trim();
+      const newEmail = document.getElementById('admEditUEmail').value.trim();
+      const newWa = document.getElementById('admEditUWa').value.trim();
+      const newCoins = Math.max(0, Number(document.getElementById('admEditUCoins').value || 0));
+      const newStreak = Math.min(7, Math.max(0, Number(document.getElementById('admEditUStreak').value || 0)));
+      const newPass = document.getElementById('admEditUPass').value.trim();
+      if (!newName || !newUser || !newEmail) return alert('Nama, Username, dan Email wajib diisi!');
+      if (state.users.some(x => x.id !== id && (x.username.toLowerCase() === newUser.toLowerCase() || x.email.toLowerCase() === newEmail.toLowerCase()))) {
+        return alert('Username atau Email sudah dipakai akun lain!');
+      }
+      const newRole = document.getElementById('admEditURole')?.value || targetU.role;
+      targetU.name = newName;
+      targetU.username = newUser;
+      targetU.email = newEmail;
+      targetU.whatsapp = newWa;
+      targetU.coins = newCoins;
+      targetU.streakDay = newStreak;
+      targetU.role = newRole;
+      if (newPass) targetU.password = newPass;
+      ui.editUserId = null;
+      saveState(); renderAll(); openAdminModal();
+      alert('✅ Data akun konsumen' + (newPass ? ` & sandi baru (${newPass})` : '') + ' berhasil disimpan!');
+    } else if (act === 'quick-reset-pass') {
+      const targetU = state.users.find(x => x.id === id);
+      if (!targetU) return;
+      targetU.password = '123456';
+      saveState(); openAdminModal();
+      alert(`🔑 Password akun @${targetU.username} berhasil direset menjadi: 123456`);
+    } else if (act === 'toggle-suspend-user') {
+      const targetU = state.users.find(x => x.id === id);
+      if (!targetU) return;
+      targetU.suspended = !targetU.suspended;
+      saveState(); openAdminModal();
+      alert(targetU.suspended ? `🚫 Akun @${targetU.username} dinonaktifkan.` : `✅ Akun @${targetU.username} diaktifkan kembali.`);
+    } else if (act === 'del-user') {
+      const targetU = state.users.find(x => x.id === id);
+      if (!targetU) return;
+      if (!confirm(`Hapus permanen akun konsumen ${targetU.name} (@${targetU.username})?`)) return;
+      state.users = state.users.filter(x => x.id !== id);
+      if (ui.editUserId === id) ui.editUserId = null;
+      saveState(); openAdminModal();
+    } else if (act === 'edit-product') {
+      const p = state.products.find(x => x.id === id);
+      if (!p) return;
+      ui.editProdId = p.id;
+      ui.tempProdImages = [...(p.images || [])];
+      ui.tempProdVariants = (p.variants || []).map(v => ({ name: v.name, price: v.price }));
+      openAdminModal();
+    } else if (act === 'cancel-edit-product') {
+      ui.editProdId = null;
+      ui.tempProdImages = [];
+      ui.tempProdVariants = [];
+      openAdminModal();
+    } else if (act === 'add-temp-variant') {
+      // Sync current variant inputs before adding
+      document.querySelectorAll('[data-var-name]').forEach(inp => {
+        const i = Number(inp.dataset.varName);
+        if (ui.tempProdVariants[i]) ui.tempProdVariants[i].name = inp.value;
+      });
+      document.querySelectorAll('[data-var-price]').forEach(inp => {
+        const i = Number(inp.dataset.varPrice);
+        if (ui.tempProdVariants[i]) ui.tempProdVariants[i].price = Number(inp.value || 0);
+      });
+      ui.tempProdVariants.push({ name: '', price: 0 });
+      openAdminModal();
+    } else if (act === 'del-temp-variant') {
+      ui.tempProdVariants.splice(Number(val), 1);
+      openAdminModal();
+    } else if (act === 'del-temp-img') {
+      ui.tempProdImages.splice(Number(val), 1);
+      openAdminModal();
+    } else if (act === 'save-product') {
+      const title = document.getElementById('admPTitle').value.trim();
+      const category = document.getElementById('admPCat').value;
+      const badge = document.getElementById('admPBadge').value.trim();
+      const price = Number(document.getElementById('admPPrice').value || 0);
+      const desc = document.getElementById('admPDesc').value.trim();
+      const rank = document.getElementById('admPRank')?.value.trim() || '';
+      const skins = document.getElementById('admPSkins')?.value.trim() || '';
+      const bindOrOp = document.getElementById('admPBind')?.value.trim() || '';
+      if (!title || !price) return alert('Nama produk & harga wajib diisi!');
+
+      // Collect updated variants
+      document.querySelectorAll('[data-var-name]').forEach(inp => {
+        const i = Number(inp.dataset.varName);
+        if (ui.tempProdVariants[i]) ui.tempProdVariants[i].name = inp.value.trim();
+      });
+      document.querySelectorAll('[data-var-price]').forEach(inp => {
+        const i = Number(inp.dataset.varPrice);
+        if (ui.tempProdVariants[i]) ui.tempProdVariants[i].price = Number(inp.value || 0);
+      });
+      const cleanVariants = ui.tempProdVariants.filter(v => v.name && v.price > 0);
+
+      const files = document.getElementById('admPFiles').files;
+      const newImgs = [];
+      for (const f of files) newImgs.push(await compressImage(f));
+
+      const combinedImgs = [...ui.tempProdImages, ...newImgs];
+      if (!combinedImgs.length) {
+        combinedImgs.push(makePosterSVG(title.toUpperCase(), badge || 'RIFSTORE', '#0f172a', '#0284c7'));
+      }
+
+      if (ui.editProdId) {
+        const existing = state.products.find(x => x.id === ui.editProdId);
+        if (existing) {
+          existing.title = title;
+          existing.game = title;
+          existing.category = category;
+          existing.badge = badge;
+          existing.price = cleanVariants.length ? cleanVariants[0].price : price;
+          existing.desc = desc;
+          existing.images = combinedImgs;
+          existing.variants = cleanVariants;
+          if (category === 'akun') {
+            existing.rank = rank;
+            existing.skins = skins;
+            existing.bind = bindOrOp;
+          } else if (category === 'pulsa') {
+            existing.operator = bindOrOp;
+          }
+        }
+        ui.editProdId = null;
+        ui.tempProdImages = [];
+        ui.tempProdVariants = [];
+        saveState(); renderAll(); openAdminModal();
+        alert('✅ Produk berhasil diupdate / diperbarui!');
+      } else {
+        const prodObj = {
+          id: 'p-' + Date.now(),
+          title,
+          category,
+          game: title,
+          badge,
+          price: cleanVariants.length ? cleanVariants[0].price : price,
+          stock: 99,
+          images: combinedImgs,
+          variants: cleanVariants,
+          desc
+        };
+        if (category === 'akun') { prodObj.rank = rank; prodObj.skins = skins; prodObj.bind = bindOrOp; }
+        if (category === 'pulsa') { prodObj.operator = bindOrOp; }
+        state.products.unshift(prodObj);
+        ui.tempProdImages = [];
+        ui.tempProdVariants = [];
+        saveState(); renderAll(); openAdminModal();
+        alert('✅ Produk baru berhasil ditambahkan!');
+      }
+    } else if (act === 'del-product') {
+      if (!confirm('Hapus produk ini dari katalog?')) return;
+      state.products = state.products.filter(x => x.id !== id);
+      if (ui.editProdId === id) { ui.editProdId = null; ui.tempProdImages = []; ui.tempProdVariants = []; }
+      saveState(); renderAll(); openAdminModal();
+    } else if (act === 'add-gacha-slot') {
+      if (state.gachaPrizes.length >= 12) return alert('Maksimal 12 slot gacha pada roda.');
+      const palette = ['#38bdf8', '#34d399', '#818cf8', '#f472b6', '#fbbf24', '#fb923c', '#a78bfa', '#2dd4bf'];
+      const color = palette[state.gachaPrizes.length % palette.length];
+      state.gachaPrizes.push({
+        id: 'gp-' + Date.now(),
+        label: 'Bonus +25 Coin',
+        type: 'coin',
+        value: 25,
+        rarity: 'common',
+        weight: 10,
+        icon: '🪙',
+        color
+      });
+      saveState(); openAdminModal();
+    } else if (act === 'add-zonk-slot') {
+      if (state.gachaPrizes.length >= 12) return alert('Maksimal 12 slot gacha pada roda.');
+      state.gachaPrizes.push({
+        id: 'gp-' + Date.now(),
+        label: 'ZONK! Coba Lagi',
+        type: 'zonk',
+        value: 0,
+        rarity: 'common',
+        weight: 25,
+        icon: '😅',
+        color: '#94a3b8'
+      });
+      saveState(); openAdminModal();
+    } else if (act === 'open-profile') {
+      document.getElementById('sidebarOverlay').classList.add('hidden');
+      document.getElementById('sidebarDrawer').classList.add('-translate-x-full');
+      openProfileModal();
+    } else if (act === 'remove-profile-avatar') {
+      const u = getUser();
+      if (!u) return;
+      u.avatar = '';
+      saveState(); renderAll(); openProfileModal();
+    } else if (act === 'save-profile') {
+      const u = getUser();
+      if (!u) return;
+      const newName = document.getElementById('profName').value.trim();
+      const newUser = document.getElementById('profUsername').value.trim();
+      const newEmail = document.getElementById('profEmail').value.trim();
+      const newWa = document.getElementById('profWa').value.trim();
+      const p1 = document.getElementById('profNewPass').value;
+      const p2 = document.getElementById('profNewPass2').value;
+      if (!newName || !newUser || !newEmail) return alert('Nama, Username, dan Email tidak boleh kosong!');
+      if (state.users.some(x => x.id !== u.id && (x.username.toLowerCase() === newUser.toLowerCase() || x.email.toLowerCase() === newEmail.toLowerCase()))) {
+        return alert('Username atau Email sudah digunakan akun lain!');
+      }
+      if (p1 || p2) {
+        if (p1 !== p2) return alert('Konfirmasi password baru tidak cocok!');
+        if (p1.length < 3) return alert('Password baru minimal 3 karakter.');
+        u.password = p1;
+      }
+      const fileInp = document.getElementById('profAvatarInput');
+      if (fileInp && fileInp.dataset.pendingAvatar) {
+        u.avatar = fileInp.dataset.pendingAvatar;
+      }
+      u.name = newName;
+      u.username = newUser;
+      u.email = newEmail;
+      u.whatsapp = newWa;
+      // Sync chat thread display name if exists
+      const chatTh = state.chats.find(c => c.userId === u.id);
+      if (chatTh) { chatTh.userName = newName; chatTh.username = newUser; }
+      saveState();
+      renderAll();
+      closeModal();
+      alert('✅ Profil & foto profil berhasil diperbarui!');
+    } else if (act === 'del-gacha-slot') {
+      if (state.gachaPrizes.length <= 2) return alert('Minimal harus ada 2 slot hadiah gacha.');
+      state.gachaPrizes.splice(Number(val), 1);
+      saveState(); openAdminModal();
+    } else if (act === 'save-gacha-slots') {
+      const updated = [];
+      for (let i = 0; i < state.gachaPrizes.length; i++) {
+        const label = document.getElementById('gpLabel' + i)?.value.trim() || `Hadiah Slot ${i+1}`;
+        const icon = document.getElementById('gpIcon' + i)?.value.trim() || '🎁';
+        const type = document.getElementById('gpType' + i)?.value || 'coin';
+        const value = Number(document.getElementById('gpVal' + i)?.value || 0);
+        const weight = Math.max(0, Number(document.getElementById('gpWeight' + i)?.value || 0));
+        const color = document.getElementById('gpColor' + i)?.value || '#38bdf8';
+        updated.push({
+          id: state.gachaPrizes[i].id || ('gp-' + Date.now() + '-' + i),
+          label,
+          icon,
+          type,
+          value,
+          weight,
+          rarity: weight <= 10 ? 'jackpot' : weight <= 20 ? 'rare' : 'common',
+          color
+        });
+      }
+      const sumW = updated.reduce((s, x) => s + x.weight, 0);
+      if (sumW <= 0) return alert('Total persentase peluang minimal harus lebih dari 0%!');
+      state.gachaPrizes = updated;
+      saveState(); renderAll(); openAdminModal();
+      alert(`✅ ${updated.length} Slot Hadiah Gacha & persentase peluang (Total ${sumW}%) berhasil disimpan!`);
+    } else if (act === 'add-promo') {
+      const code = document.getElementById('admPromoCode').value.trim().toUpperCase();
+      const type = document.getElementById('admPromoType').value;
+      const value = Number(document.getElementById('admPromoVal').value || 0);
+      if (!code || !value) return;
+      state.promos.push({ id: 'pr-' + Date.now(), code, type, value, minSpend: 0, scope: 'all' });
+      saveState(); renderAll(); openAdminModal();
+    } else if (act === 'del-promo') {
+      state.promos = state.promos.filter(x => x.id !== id);
+      saveState(); renderAll(); openAdminModal();
+    } else if (act === 'save-coin-settings') {
+      state.settings.coinRate = Math.max(1, Number(document.getElementById('admCoinRate').value || 100));
+      state.settings.gachaCostRegular = Number(document.getElementById('admSpinReg').value || 50);
+      state.settings.gachaCostSultan = Number(document.getElementById('admSpinSul').value || 150);
+      const days = [];
+      for (let i = 0; i < 7; i++) days.push(Number(document.getElementById('admDay' + i).value || 20));
+      state.settings.streakRewards = days;
+      saveState(); renderAll(); openAdminModal();
+      alert('✅ Pengaturan Coin & Absen 7 Hari berhasil disimpan!');
+    } else if (act === 'adj-coin') {
+      const targetU = state.users.find(x => x.id === id);
+      if (targetU) { targetU.coins = Math.max(0, targetU.coins + Number(val)); saveState(); renderAll(); openAdminModal(); }
+    } else if (act === 'save-web-settings') {
+      state.settings.storeName = document.getElementById('admStoreName').value.trim() || 'RIFSTORE';
+      state.settings.tagline = document.getElementById('admStoreTag').value.trim();
+      state.settings.footerDesc = document.getElementById('admFooterDesc').value.trim();
+      state.settings.csWhatsapp = document.getElementById('admCsWa').value.trim();
+      state.settings.socialTiktok = document.getElementById('admSocTik').value.trim();
+      state.settings.socialInstagram = document.getElementById('admSocIns').value.trim();
+      state.settings.socialYoutube = document.getElementById('admSocYt').value.trim();
+      state.settings.allPaymentLink = document.getElementById('admAllPay').value.trim();
+      state.settings.qrisPaymentLink = document.getElementById('admQrisLink').value.trim();
+      const logoF = document.getElementById('admLogoFile').files[0];
+      const heroF = document.getElementById('admHeroFile').files[0];
+      if (logoF) state.settings.customLogo = await compressImage(logoF, 240);
+      if (heroF) state.settings.heroBannerImg = await compressImage(heroF, 900);
+      saveState(); renderAll(); openAdminModal();
+      alert('✅ Tampilan & Tautan Pembayaran diperbarui!');
+    }
+  });
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
